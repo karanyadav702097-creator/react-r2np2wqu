@@ -839,7 +839,7 @@ const DOC_CATEGORIES = ["all","identity","transport","travel","education","healt
 const DISTRESS_KEYWORDS = ["help","madad","bachao","save me","emergency","danger","sos","help me","police","koi hai","chhodo","bachao mujhe","bhaago"];
 
 const ONBOARDING_DATA = [
-  { icon:<img src="/india-logo.png" alt="India" style={{width:"70px",height:"70px",borderRadius:"50%"}} />, color:"#FF6B00", title:"Sahayak v4.0", sub:"National AI Citizen Platform", desc:"India's most advanced citizen super app. AI-powered, secure, and built for 1.4 billion Indians."
+   { icon: <img src="/india-logo.png" alt="India" style={{ width:"70px", height:"70px", borderRadius:"50%" }} />, color:"#FF6B00", title:"Sahayak v4.0", sub:"National AI Citizen Platform", desc:"India's most advanced citizen super app. AI-powered, secure, and built for 1.4 billion Indians." },
   { icon:"🆘",  color:"#EF4444", title:"Smart SOS",     sub:"Voice-Activated Emergency",      desc:"Say 'Bachao' or 'Help' — AI instantly calls police, shares live GPS, and alerts your family." },
   { icon:"🗂️",  color:"#06B6D4", title:"DigiLocker 2.0",sub:"Ultra-Secure Document Vault",   desc:"Aadhaar, PAN, Passport — with PIN protection, OCR scanning, and government-verified QR badges." },
   { icon:"🤖",  color:"#8B5CF6", title:"AI Grievance",  sub:"Smart Auto-Routing System",      desc:"Describe any problem naturally. AI classifies, drafts and routes it to the right department." },
