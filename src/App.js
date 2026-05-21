@@ -31,135 +31,650 @@ const C = {
 // ── CENTRALIZED TRANSLATIONS ──────────────────────────────────────
 const TRANSLATIONS = {
   हिंदी: {
+    // App shell
     appName:"सहायक", tagline:"AI नागरिक सुपर ऐप", version:"v4.0",
     home:"होम", sos:"SOS", yojana:"योजना", complaint:"शिकायत",
     docs:"दस्तावेज़", safety:"सुरक्षा", bot:"बॉट", admin:"प्रशासन",
-    welcome:"नमस्ते", signIn:"लॉगिन / रजिस्टर", logout:"लॉगआउट",
-    sosTitle:"आपातकालीन SOS", sosHint:"5 सेकंड · पुलिस + परिवार तुरंत अलर्ट",
-    voiceWatch:"वॉइस वॉच", listening:"सुन रहा हूं...",
-    located:"स्थान मिला", getGps:"GPS लें",
-    emergency:"आपातकालीन हेल्पलाइन", schemesTitle:"सरकारी योजनाएं",
-    grievanceTitle:"AI शिकायत सहायक", digilockerTitle:"डिजिलॉकर",
-    womenSafetyTitle:"महिला सुरक्षा", chatPlaceholder:"कुछ भी पूछें...",
-    submit:"जमा करें", cancel:"रद्द करें", back:"वापस", save:"सहेजें",
-    verified:"सत्यापित", pending:"लंबित", download:"डाउनलोड",
-    share:"साझा करें", sync:"सिंक करें", search:"खोजें",
-    unlock:"अनलॉक करें", lock:"लॉक करें", scan:"स्कैन करें",
-    applyNow:"अभी आवेदन करें", eligibility:"पात्रता",
+    // Auth
+    secureLogin:"सुरक्षित लॉगिन", firebaseOtp:"Firebase OTP प्रमाणीकरण — सुरक्षित",
+    mobileNumber:"मोबाइल नंबर", getOtp:"📨 OTP प्राप्त करें →",
+    sending:"⏳ OTP भेज रहे हैं...", verifyOtp:"OTP सत्यापित करें",
+    verifying:"⏳ सत्यापित हो रहा है...", loginSuccess:"लॉगिन सफल!",
+    resendOtp:"↻ OTP पुनः भेजें", demoMode:"डेमो मोड:",
+    demoHint:"कोई भी 10 अंक · OTP:", backBtn:"← वापस", signIn:"लॉगिन / रजिस्टर",
+    welcomeBack:"Sahayak में आपका स्वागत है 🙏",
+    // Profile
     completeProfile:"प्रोफाइल पूरी करें", editProfile:"प्रोफाइल संपादित करें",
     fullName:"पूरा नाम", email:"ईमेल", city:"शहर", state:"राज्य",
     gender:"लिंग", dob:"जन्म तिथि", address:"पता",
-    mobileNumber:"मोबाइल नंबर", getOtp:"OTP प्राप्त करें",
-    verifyOtp:"OTP सत्यापित करें", resendOtp:"OTP पुनः भेजें",
-    sending:"भेज रहे हैं...", verifying:"सत्यापित हो रहा है...",
-    loginSuccess:"लॉगिन सफल!", analyzing:"AI विश्लेषण कर रहा है...",
-    submitComplaint:"शिकायत दर्ज करें", viewHistory:"इतिहास देखें",
-    guardianMode:"गार्डियन मोड", silentSos:"साइलेंट SOS",
-    fakeCall:"फेक कॉल", recording:"रिकॉर्डिंग",
-    cancelEmergency:"आपातकाल रद्द करें", quickAccess:"त्वरित पहुंच",
-    recentComplaints:"हाल की शिकायतें", viewAll:"सभी देखें",
-    allDocs:"सभी दस्तावेज़", favorite:"पसंदीदा",
-    aiAssistant:"AI सहायक", docScanner:"दस्तावेज़ स्कैनर",
+    personalInfo:"व्यक्तिगत जानकारी", location:"स्थान", additional:"अतिरिक्त",
+    profileSaved:"✅ प्रोफाइल सफलतापूर्वक सहेजी गई!",
+    stepOf:"का चरण", savedFirestore:"Firebase Firestore में सहेजा गया",
+    skipNow:"अभी छोड़ें →", saving:"⏳ सहेज रहे हैं...",
+    // Home
+    welcome:"नमस्ते", logout:"लॉगआउट",
+    sosTitle:"आपातकालीन SOS", sosHint:"5 सेकंड · पुलिस + परिवार तुरंत अलर्ट",
+    voiceWatch:"वॉइस वॉच", listening:"सुन रहा हूं...",
+    located:"स्थान मिला", getGps:"GPS लें",
+    bgListening:"निरंतर बैकग्राउंड सुनाई",
+    callingIn:"सेकंड में कॉल हो रहा है — रद्द करने के लिए टैप करें",
+    pressForSos:"आपातकालीन SOS के लिए दबाएं",
+    quickAccess:"त्वरित पहुंच", recentComplaints:"हाल की शिकायतें",
+    viewAll:"सभी देखें", helplines:"हेल्पलाइन",
+    schemes:"योजनाएं", aiBot:"AI बॉट",
+    // Emergency
+    emergency:"आपातकालीन हेल्पलाइन", emergencyActive:"आपातकाल सक्रिय",
+    liveGps:"GPS ट्रैकिंग LIVE", alertsDispatched:"अलर्ट भेजे गए:",
+    cancelEmergency:"✋ आपातकाल मोड रद्द करें",
+    nearbyServices:"पास की आपातकालीन सेवाएं",
+    all:"सभी", hospitals:"अस्पताल", policeStns:"पुलिस स्टेशन",
+    tapToCall:"नंबर टैप करके कॉल करें · मुफ़्त · बिना बैलेंस",
+    // Services
+    svc_police:"पुलिस", svc_police_desc:"अपराध / सुरक्षा",
+    svc_ambulance:"एम्बुलेंस", svc_ambulance_desc:"चिकित्सा आपातकाल",
+    svc_fire:"अग्निशमन दल", svc_fire_desc:"आग आपातकाल",
+    svc_women:"महिला हेल्पलाइन", svc_women_desc:"महिला सुरक्षा",
+    svc_disaster:"आपदा राहत", svc_disaster_desc:"प्राकृतिक आपदा",
+    svc_road:"सड़क दुर्घटना", svc_road_desc:"हाईवे मदद",
+    svc_child:"बाल हेल्पलाइन", svc_child_desc:"CHILDLINE",
+    svc_cyber:"साइबर अपराध", svc_cyber_desc:"ऑनलाइन धोखाधड़ी",
+    // Schemes
+    schemesTitle:"सरकारी योजनाएं", govtVerified:"सरकार सत्यापित",
+    officialSchemes:"आधिकारिक सरकारी पोर्टल · पात्रता · लाभ · आवेदन लिंक",
+    keyBenefits:"मुख्य लाभ", eligibilityCriteria:"पात्रता मानदंड",
+    howToApply:"कैसे आवेदन करें — चरण दर चरण",
+    requiredDocs:"आवश्यक दस्तावेज़",
+    checkEligOnline:"🔍 ऑनलाइन पात्रता जांचें →",
+    officialMinistry:"आधिकारिक कार्यान्वयन मंत्रालय",
+    smartRouting:"स्मार्ट पोर्टल रूटिंग",
+    routedTo:"रूट किया गया →", helpline:"हेल्पलाइन →",
+    applyNow:"🚀 अभी आवेदन करें", eligibility:"✅ पात्रता", askAi:"AI से पूछें →",
+    digiLockerTip:"💡 DigiLocker में सभी दस्तावेज़ तैयार रखें",
+    officialNote:"सभी योजनाएं भारत सरकार के आधिकारिक कार्यक्रम हैं।",
+    // Complaint / Grievance
+    grievanceTitle:"AI शिकायत सहायक",
+    gpsAutoDetect:"GPS ऑटो-डिटेक्ट · वॉइस · AI ड्राफ्ट · स्मार्ट रूटिंग · ट्रैक",
+    newTab:"✏️ नई", historyTab:"📋 इतिहास",
+    noComplaints:"अभी तक कोई शिकायत नहीं", noComplaintsHint:"नई टैब से पहली शिकायत दर्ज करें",
+    fileNew:"+ नई शिकायत दर्ज करें",
+    step1:"1", step1Label:"स्थान ऑटो-डिटेक्ट",
+    autoDetectGps:"📍 GPS ऑटो-डिटेक्ट",
+    detecting:"⏳ डिटेक्ट हो रहा है...",
+    gpsPermDenied:"स्थान की अनुमति अस्वीकार। मैन्युअल दर्ज करें।",
+    enterManually:"नीचे अपना स्थान मैन्युअल दर्ज करें।",
+    liveLocationDetected:"लाइव स्थान मिला",
+    viewOnMaps:"🗺️ Google Maps पर देखें →",
+    editLocation:"✏️ संपादित करें",
+    district:"जिला", pincode:"पिनकोड", area:"क्षेत्र / सड़क (वैकल्पिक)",
+    step2:"2", step2Label:"समस्या का प्रकार",
+    step3:"3", step3Label:"विवरण — टाइप करें या बोलें",
+    stopVoice:"बंद करें", voiceInput:"वॉइस",
+    complainPlaceholder:"उदाहरण: 'सड़क टूट गई है' या 'पानी 3 दिन से नहीं आ रहा' — कोई भी भाषा",
+    voiceListenPlaceholder:"🎙️ सुन रहा हूं... किसी भी भाषा में बोलें...",
+    attachEvidence:"📷 सबूत संलग्न करें",
+    photoAdded:"📷 फ़ोटो जोड़ी ✓",
+    generateBtn:"🤖 AI से शिकायत तैयार करें",
+    generating:"⚙️ AI शिकायत तैयार कर रहा है...",
+    aiAnalyzing:"AI आपकी शिकायत का विश्लेषण कर रहा है...",
+    claudeAnalyzing:"Claude AI · पहचान · रूटिंग · ड्राफ्टिंग",
+    detectingCategory:"शिकायत श्रेणी पहचाना जा रही है",
+    identifyingDept:"जिम्मेदार विभाग पहचाना जा रहा है",
+    generatingDraft:"औपचारिक प्रारूप पत्र तैयार हो रहा है",
+    routingPortal:"आधिकारिक सरकारी पोर्टल पर रूट हो रहा है",
+    done:"✓ हो गया", processing:"● प्रक्रिया में",
+    aiGenerated:"✅ AI शिकायत तैयार",
+    category:"श्रेणी", dept:"विभाग", estDays:"अनु. दिन",
+    portal:"पोर्टल", smartPortalRouting:"स्मार्ट पोर्टल रूटिंग सक्रिय",
+    aiDraftTitle:"📝 AI-निर्मित औपचारिक शिकायत प्रारूप",
+    submitComplaint:"✅ शिकायत दर्ज करें",
+    openPortal:"🌐 पोर्टल खोलें",
+    copyDraft:"📋 प्रारूप कॉपी करें", copied:"✅ कॉपी हो गया!",
+    submitTrack:"📊 दर्ज करें और ट्रैक करें",
+    refGenerated:"दर्ज करने पर Ref# बनेगा",
+    shikayatRegistered:"शिकायत दर्ज!",
+    officiallyFiled:"आपकी शिकायत आधिकारिक रूप से दर्ज हो गई",
+    referenceNo:"संदर्भ संख्या", estResolution:"अनुमानित समाधान",
+    officialPortal:"आधिकारिक पोर्टल",
+    openPortalBtn:"🌐 पोर्टल खोलें", trackComplaint:"📊 शिकायत ट्रैक करें",
+    viewHistory:"इतिहास देखें", submitComplaintBtn:"शिकायत दर्ज करें",
+    submitted:"जमा", reviewed:"समीक्षा", inProgress:"प्रगति में", resolved:"हल हुआ",
+    priority:"प्राथमिकता", high:"उच्च", medium:"मध्यम", low:"कम",
+    // DigiLocker
+    digilockerTitle:"डिजिलॉकर",
+    digiProtected:"डिजिलॉकर सुरक्षित", enterPin:"4-अंकीय PIN दर्ज करें",
+    unlock:"🔓 डिजिलॉकर अनलॉक करें", lock:"🔒 लॉक",
+    demo4digit:"डेमो: कोई भी 4 अंक दर्ज करें",
+    securityFeatures:"सुरक्षा सुविधाएं", digiSecDesc:"PIN · फेस लॉक · फिंगरप्रिंट · एन्क्रिप्टेड",
+    verified:"सत्यापित", pending:"लंबित", download:"⬇️ डाउनलोड",
+    share:"📤 साझा करें", print:"🖨️ प्रिंट", sync:"⟳ सिंक",
+    search:"दस्तावेज़ खोजें...", digiLinked:"LINKED",
+    digiKyc:"KYC ✓", govtVerifiedBadge:"सरकार सत्यापित",
+    verifiedDocs:"सत्यापित दस्तावेज़",
+    allDocs:"📁 सभी दस्तावेज़", docScanner:"📷 स्कैनर", aiAssistant:"🤖 AI सहायक",
+    yourDocs:"आपके दस्तावेज़",
+    qrVerify:"QR सत्यापन बैज", qrVerifyDesc:"सरकारी संस्थाएं तुरंत सत्यापित कर सकती हैं",
+    lastSynced:"आखिरी सिंक", copyNum:"कॉपी करें", numCopied:"📋 नंबर कॉपी हुआ!",
+    docScanned:"✅ दस्तावेज़ स्कैन हुआ!", dataExtracted:"डेटा सफलतापूर्वक निकाला गया",
+    placeDoc:"यहां दस्तावेज़ रखें", scanSupported:"Aadhaar, PAN, DL, Passport",
+    scanning:"दस्तावेज़ स्कैन हो रहा है...", aiExtracting:"AI टेक्स्ट निकाल रहा है...",
+    scanDoc:"📷 दस्तावेज़ स्कैन करें", rescan:"पुनः स्कैन करें",
+    autoFillProfile:"प्रोफाइल ऑटो-भरें", ocrComplete:"✅ OCR निष्कर्षण पूरा",
+    syncSuccess:"🗂️ डिजिलॉकर सिंक हुआ!", syncDesc:"सभी दस्तावेज़ अपडेट हुए।",
+    digiEndToEnd:"सभी दस्तावेज़ एंड-टू-एंड एन्क्रिप्टेड हैं।",
+    aiDocTitle:"AI दस्तावेज़ सहायक", aiDocDesc:"दस्तावेज़ों के बारे में स्मार्ट सुझाव",
+    voterMissing:"वोटर ID लंबित", dlExpiry:"DL समाप्ति अनुस्मारक",
+    addHealthCard:"स्वास्थ्य कार्ड जोड़ें", profileComplete:"प्रोफाइल 88% पूरी",
+    enableBiometric:"बायोमेट्रिक लॉक सक्षम करें",
+    linkNow:"अभी लिंक करें", remindMe:"मुझे याद दिलाएं", addDoc:"दस्तावेज़ जोड़ें",
+    upload:"अपलोड", setup:"सेटअप",
+    // Women Safety
+    womenSafetyTitle:"महिला सुरक्षा",
+    womenSubtitle:"उन्नत सुरक्षा · साइलेंट SOS · गार्डियन · फेक कॉल",
+    guardianMode:"गार्डियन मोड", guardianDesc:"लाइव GPS लगातार विश्वसनीय संपर्कों के साथ साझा",
+    sharingWith:"📡 के साथ लाइव स्थान साझा हो रहा है:",
+    silentSos:"🤫 साइलेंट SOS (तीन बार टैप)",
+    silentSosDesc:"3× टैप करके चुपचाप आपातकाल ट्रिगर करें। कोई आवाज़ नहीं।",
+    tap3x:"3× टैप करें साइलेंट SOS के लिए",
+    tap2more:"2 बार और टैप करें...", tap1more:"1 बार और टैप करें...",
+    tapsRegistered:"टैप दर्ज हुए",
+    fakeCall:"📞 फेक कॉल जनरेटर", fakeCallDesc:"असुरक्षित स्थिति से बाहर निकलने के लिए नकली कॉल।",
+    now:"अभी", tenSec:"10 सेकंड", thirtySec:"30 सेकंड",
+    recording:"रिकॉर्डिंग", recTitle:"🎙️ आपातकालीन रिकॉर्डिंग",
+    recDesc:"कानूनी सबूत के रूप में ऑडियो रिकॉर्ड करें। Firebase Storage में सुरक्षित।",
+    stop:"⏹ बंद करें", start:"🔴 शुरू करें",
+    fakeCallRinging:"📞 फेक कॉल बज रही है", incomingCall:"INCOMING CALL",
+    decline:"अस्वीकार", accept:"स्वीकार",
+    womenHelpline:"महिला हेल्पलाइन", womenHelplineDesc:"24/7 · मुफ़्त · गोपनीय · टैप करें",
+    // Chatbot
+    chatPlaceholder:"कुछ भी पूछें...",
+    botTitle:"SahayakBot AI", botSubtitle:"Claude-संचालित · 24/7",
+    // Admin
+    adminTitle:"Admin Dashboard", adminSubtitle:"लाइव · रियल-टाइम · सरकारी अधिकारी",
+    realTime:"REAL-TIME", liveFeed:"🚨 लाइव आपातकाल फ़ीड",
+    systemPerf:"⚡ सिस्टम प्रदर्शन",
+    overview:"Overview", heatmap:"Heatmap", complaints:"Complaints", infra:"Infra",
+    districtHeatmap:"🗺️ जिला शिकायत हीटमैप",
+    heatmapDesc:"शिकायत + आपातकाल घनत्व — दिल्ली NCR",
+    complaintCategories:"📂 शिकायत श्रेणियां",
+    serviceHealth:"🏗️ सेवा स्वास्थ्य",
+    productionArch:"☁️ उत्पादन वास्तुकला",
+    // Common
+    save:"सहेजें", cancel:"रद्द करें", back:"वापस", submit:"जमा करें",
+    offline:"📶 ऑफलाइन", offlineBanner:"ऑफलाइन मोड — SOS और GPS अभी भी उपलब्ध।",
+    liveStatus:"LIVE", offlineStatus:"OFFLINE",
+    notifications:"सूचनाएं", markAllRead:"सभी पढ़े",
+    profileTitle:"प्रोफाइल", digiLockerId:"DigiLocker ID:",
+    copySuccess:"📋 नंबर कॉपी हुआ!", recordingStarted:"🔴 रिकॉर्डिंग शुरू",
+    recordingSaved:"⏹ रिकॉर्डिंग सहेजी गई", guardianOn:"🛡️ गार्डियन मोड चालू!",
+    guardianOff:"गार्डियन मोड बंद", fakeRinging:"📞 फेक कॉल बज रही है",
+    draftCopied:"📋 ड्राफ्ट क्लिपबोर्ड पर कॉपी हुआ!",
+    eSahayak:"🇮🇳 एक भारत, श्रेष्ठ भारत",
   },
+
   English: {
     appName:"Sahayak", tagline:"AI Citizen Super App", version:"v4.0",
     home:"Home", sos:"SOS", yojana:"Schemes", complaint:"Grievance",
     docs:"DigiLocker", safety:"Safety", bot:"Bot", admin:"Admin",
-    welcome:"Welcome", signIn:"Login / Register", logout:"Logout",
-    sosTitle:"Emergency SOS", sosHint:"5s countdown · Police + Family instantly alerted",
-    voiceWatch:"Voice Watch", listening:"Listening...",
-    located:"Located", getGps:"Get GPS",
-    emergency:"Emergency Helplines", schemesTitle:"Government Schemes",
-    grievanceTitle:"AI Grievance Assistant", digilockerTitle:"DigiLocker",
-    womenSafetyTitle:"Women Safety", chatPlaceholder:"Ask anything...",
-    submit:"Submit", cancel:"Cancel", back:"Back", save:"Save",
-    verified:"Verified", pending:"Pending", download:"Download",
-    share:"Share", sync:"Sync", search:"Search",
-    unlock:"Unlock", lock:"Lock", scan:"Scan",
-    applyNow:"Apply Now", eligibility:"Eligibility",
+    secureLogin:"Secure Login", firebaseOtp:"Firebase OTP authentication — real & secure",
+    mobileNumber:"Mobile Number", getOtp:"📨 Get OTP →",
+    sending:"⏳ Sending OTP...", verifyOtp:"Verify OTP",
+    verifying:"⏳ Verifying...", loginSuccess:"Login Successful!",
+    resendOtp:"↻ Resend OTP", demoMode:"Demo:",
+    demoHint:"Any 10-digit number · OTP:", backBtn:"← Back", signIn:"Login / Register",
+    welcomeBack:"Welcome to Sahayak 🙏",
     completeProfile:"Complete Profile", editProfile:"Edit Profile",
     fullName:"Full Name", email:"Email", city:"City", state:"State",
     gender:"Gender", dob:"Date of Birth", address:"Address",
-    mobileNumber:"Mobile Number", getOtp:"Get OTP",
-    verifyOtp:"Verify OTP", resendOtp:"Resend OTP",
-    sending:"Sending...", verifying:"Verifying...",
-    loginSuccess:"Login Successful!", analyzing:"AI Analyzing...",
-    submitComplaint:"Submit Complaint", viewHistory:"View History",
-    guardianMode:"Guardian Mode", silentSos:"Silent SOS",
-    fakeCall:"Fake Call", recording:"Recording",
-    cancelEmergency:"Cancel Emergency", quickAccess:"Quick Access",
-    recentComplaints:"Recent Complaints", viewAll:"View All",
-    allDocs:"All Documents", favorite:"Favorites",
-    aiAssistant:"AI Assistant", docScanner:"Document Scanner",
+    personalInfo:"Personal Info", location:"Location", additional:"Additional",
+    profileSaved:"✅ Profile saved successfully!",
+    stepOf:"Step of", savedFirestore:"Saved to Firebase Firestore",
+    skipNow:"Skip for now →", saving:"⏳ Saving...",
+    welcome:"Welcome", logout:"Logout",
+    sosTitle:"Emergency SOS", sosHint:"5s countdown · Police + Family instantly alerted",
+    voiceWatch:"Voice Watch", listening:"Listening...",
+    located:"Located", getGps:"Get GPS",
+    bgListening:"Continuous background listening",
+    callingIn:"Calling in — tap to cancel",
+    pressForSos:"Press for Emergency SOS",
+    quickAccess:"Quick Access", recentComplaints:"Recent Complaints",
+    viewAll:"View All", helplines:"Helplines",
+    schemes:"Schemes", aiBot:"AI Bot",
+    emergency:"Emergency Helplines", emergencyActive:"EMERGENCY ACTIVE",
+    liveGps:"GPS Tracking LIVE", alertsDispatched:"Alerts Dispatched:",
+    cancelEmergency:"✋ Cancel Emergency Mode",
+    nearbyServices:"Nearby Emergency Services",
+    all:"All", hospitals:"Hospitals", policeStns:"Police Stns.",
+    tapToCall:"Tap number to call · FREE · No balance needed",
+    svc_police:"Police", svc_police_desc:"Crime / Safety",
+    svc_ambulance:"Ambulance", svc_ambulance_desc:"Medical Emergency",
+    svc_fire:"Fire Brigade", svc_fire_desc:"Fire Emergency",
+    svc_women:"Women Helpline", svc_women_desc:"Women Safety",
+    svc_disaster:"Disaster Relief", svc_disaster_desc:"Natural Disaster",
+    svc_road:"Road Accident", svc_road_desc:"Highway Help",
+    svc_child:"Child Helpline", svc_child_desc:"CHILDLINE",
+    svc_cyber:"Cyber Crime", svc_cyber_desc:"Online Fraud",
+    schemesTitle:"Government Schemes", govtVerified:"Govt Verified",
+    officialSchemes:"Official govt portals · Eligibility · Benefits · Apply links",
+    keyBenefits:"Key Benefits", eligibilityCriteria:"Eligibility Criteria",
+    howToApply:"How to Apply — Step by Step",
+    requiredDocs:"Required Documents",
+    checkEligOnline:"🔍 Check My Eligibility Online →",
+    officialMinistry:"Official Implementing Ministry",
+    smartRouting:"Smart Portal Routing", routedTo:"Routed →",
+    helpline:"Helpline →",
+    applyNow:"🚀 Apply Now", eligibility:"✅ Eligibility", askAi:"Ask AI →",
+    digiLockerTip:"💡 Keep all documents ready in DigiLocker before applying.",
+    officialNote:"All schemes are official Government of India programmes.",
+    grievanceTitle:"AI Grievance Assistant",
+    gpsAutoDetect:"GPS Auto-Detect · Voice · AI Draft · Smart Routing · Track",
+    newTab:"✏️ New", historyTab:"📋 History",
+    noComplaints:"No complaints filed yet", noComplaintsHint:"File your first complaint using the New tab",
+    fileNew:"+ File New Complaint",
+    step1:"1", step1Label:"LOCATION AUTO-DETECT",
+    autoDetectGps:"📍 Auto-Detect GPS",
+    detecting:"⏳ Detecting...",
+    gpsPermDenied:"Location permission denied. Enter manually.",
+    enterManually:"Enter your location manually in the fields below.",
+    liveLocationDetected:"Live Location Detected",
+    viewOnMaps:"🗺️ View on Google Maps →",
+    editLocation:"✏️ Edit",
+    district:"District", pincode:"Pincode", area:"Area / Street (optional)",
+    step2:"2", step2Label:"PROBLEM TYPE",
+    step3:"3", step3Label:"DESCRIBE — TYPE OR SPEAK",
+    stopVoice:"Stop", voiceInput:"Voice",
+    complainPlaceholder:"e.g. 'Road toot gayi hai' or 'Water supply nahi aa raha 3 din se' — Any language",
+    voiceListenPlaceholder:"🎙️ Listening... speak in any language...",
+    attachEvidence:"📷 Attach Evidence",
+    photoAdded:"📷 Photo Attached ✓",
+    generateBtn:"🤖 Generate Complaint with AI",
+    generating:"⚙️ AI Generating Complaint...",
+    aiAnalyzing:"AI Analyzing Your Complaint...",
+    claudeAnalyzing:"Claude AI · Detecting · Routing · Drafting",
+    detectingCategory:"Detecting complaint category",
+    identifyingDept:"Identifying responsible department",
+    generatingDraft:"Generating formal draft letter",
+    routingPortal:"Routing to official govt portal",
+    done:"✓ Done", processing:"● Processing",
+    aiGenerated:"✅ AI Complaint Generated",
+    category:"Category", dept:"Department", estDays:"Est. Days",
+    portal:"Portal", smartPortalRouting:"Smart Portal Routing Active",
+    aiDraftTitle:"📝 AI-Generated Formal Complaint Draft",
+    submitComplaint:"✅ Submit Complaint",
+    openPortal:"🌐 Open Portal",
+    copyDraft:"📋 Copy Draft", copied:"✅ Copied!",
+    submitTrack:"📊 Submit & Track",
+    refGenerated:"Ref # generated on submission",
+    shikayatRegistered:"Shikayat Registered!",
+    officiallyFiled:"Your complaint has been officially filed",
+    referenceNo:"Reference No.", estResolution:"Est. Resolution",
+    officialPortal:"Official Portal",
+    openPortalBtn:"🌐 Open Portal", trackComplaint:"📊 Track Complaint",
+    viewHistory:"View History", submitComplaintBtn:"Submit Complaint",
+    submitted:"Submitted", reviewed:"Reviewed", inProgress:"In Progress", resolved:"Resolved",
+    priority:"Priority", high:"High", medium:"Medium", low:"Low",
+    digilockerTitle:"DigiLocker",
+    digiProtected:"DigiLocker Protected", enterPin:"Enter your 4-digit security PIN",
+    unlock:"🔓 Unlock DigiLocker", lock:"🔒 Lock",
+    demo4digit:"Demo: Enter any 4 digits to set your PIN",
+    securityFeatures:"Security Features", digiSecDesc:"PIN · Face Lock · Fingerprint · Encrypted",
+    verified:"Verified", pending:"Pending", download:"⬇️ Download",
+    share:"📤 Share", print:"🖨️ Print", sync:"⟳ Sync",
+    search:"Search documents...", digiLinked:"LINKED",
+    digiKyc:"KYC ✓", govtVerifiedBadge:"Govt Verified",
+    verifiedDocs:"Verified",
+    allDocs:"📁 All Documents", docScanner:"📷 Scanner", aiAssistant:"🤖 AI Assistant",
+    yourDocs:"YOUR DOCUMENTS",
+    qrVerify:"QR Verification Badge", qrVerifyDesc:"Government agencies can scan to verify instantly",
+    lastSynced:"Last Synced", copyNum:"Copy", numCopied:"📋 Document number copied!",
+    docScanned:"✅ Document scanned!", dataExtracted:"Data extracted successfully.",
+    placeDoc:"Place Document Here", scanSupported:"Aadhaar, PAN, DL, Passport supported",
+    scanning:"Scanning document...", aiExtracting:"AI extracting text...",
+    scanDoc:"📷 Scan Document", rescan:"Rescan",
+    autoFillProfile:"Auto-fill Profile", ocrComplete:"✅ OCR Extraction Complete",
+    syncSuccess:"🗂️ DigiLocker synced!", syncDesc:"All documents updated.",
+    digiEndToEnd:"All documents are end-to-end encrypted.",
+    aiDocTitle:"AI Document Assistant", aiDocDesc:"Smart insights about your documents.",
+    voterMissing:"Voter ID Missing", dlExpiry:"DL Expiry Reminder",
+    addHealthCard:"Add Health Card", profileComplete:"Profile 88% Complete",
+    enableBiometric:"Enable Biometric Lock",
+    linkNow:"Link Now", remindMe:"Remind Me", addDoc:"Add Doc",
+    upload:"Upload", setup:"Setup",
+    womenSafetyTitle:"Women Safety",
+    womenSubtitle:"Advanced protection · Silent SOS · Guardian · Fake Call",
+    guardianMode:"Guardian Mode", guardianDesc:"Live GPS shared continuously with trusted contacts",
+    sharingWith:"📡 SHARING LIVE LOCATION WITH:",
+    silentSos:"🤫 Silent SOS (Triple-Tap)",
+    silentSosDesc:"Tap 3× to silently trigger emergency. No sound, no visible alert.",
+    tap3x:"Tap 3× for Silent SOS",
+    tap2more:"Tap 2 more times...", tap1more:"Tap 1 more time...",
+    tapsRegistered:"taps registered",
+    fakeCall:"📞 Fake Call Generator", fakeCallDesc:"Simulate an incoming call to safely exit unsafe situations.",
+    now:"Now", tenSec:"10 sec", thirtySec:"30 sec",
+    recording:"Recording", recTitle:"🎙️ Emergency Recording",
+    recDesc:"Auto-record audio as legal evidence. Stored in Firebase Storage.",
+    stop:"⏹ Stop", start:"🔴 Start",
+    fakeCallRinging:"📞 Fake call ringing", incomingCall:"INCOMING CALL",
+    decline:"Decline", accept:"Accept",
+    womenHelpline:"Women Helpline", womenHelplineDesc:"24/7 · FREE · Confidential · Tap to call",
+    chatPlaceholder:"Ask anything...",
+    botTitle:"SahayakBot AI", botSubtitle:"Claude-powered · 24/7",
+    adminTitle:"Admin Dashboard", adminSubtitle:"Live · Real-time · Government Officials Only",
+    realTime:"REAL-TIME", liveFeed:"🚨 Live Emergency Feed",
+    systemPerf:"⚡ System Performance",
+    overview:"Overview", heatmap:"Heatmap", complaints:"Complaints", infra:"Infra",
+    districtHeatmap:"🗺️ District Complaint Heatmap",
+    heatmapDesc:"Complaint + emergency density across Delhi NCR",
+    complaintCategories:"📂 Complaint Categories",
+    serviceHealth:"🏗️ Service Health Dashboard",
+    productionArch:"☁️ Production Architecture",
+    save:"Save", cancel:"Cancel", back:"Back", submit:"Submit",
+    offline:"📶 Offline", offlineBanner:"Offline Mode — SOS & GPS still available. AI paused.",
+    liveStatus:"LIVE", offlineStatus:"OFFLINE",
+    notifications:"Notifications", markAllRead:"Mark all read",
+    profileTitle:"Profile", digiLockerId:"DigiLocker ID:",
+    copySuccess:"📋 Document number copied!",
+    recordingStarted:"🔴 Emergency recording started",
+    recordingSaved:"⏹ Recording saved as evidence",
+    guardianOn:"🛡️ Guardian Mode ON! Live location sharing started.",
+    guardianOff:"Guardian Mode OFF",
+    fakeRinging:"📞 Fake call ringing",
+    draftCopied:"📋 Complaint draft copied to clipboard!",
+    eSahayak:"🇮🇳 Ek Bharat, Shreshtha Bharat",
   },
+
   मराठी: {
     appName:"सहायक", tagline:"AI नागरिक सुपर ॲप", version:"v4.0",
     home:"मुखपृष्ठ", sos:"SOS", yojana:"योजना", complaint:"तक्रार",
     docs:"डिजिलॉकर", safety:"सुरक्षा", bot:"बॉट", admin:"प्रशासन",
-    welcome:"नमस्कार", signIn:"लॉगिन / नोंदणी", logout:"बाहेर पडा",
-    sosTitle:"आणीबाणी SOS", sosHint:"5 सेकंद · पोलीस + कुटुंब तत्काळ सतर्क",
-    voiceWatch:"व्हॉइस वॉच", listening:"ऐकत आहे...",
-    located:"स्थान मिळाले", getGps:"GPS मिळवा",
-    emergency:"आणीबाणी हेल्पलाइन", schemesTitle:"सरकारी योजना",
-    grievanceTitle:"AI तक्रार सहाय्यक", digilockerTitle:"डिजिलॉकर",
-    womenSafetyTitle:"महिला सुरक्षा", chatPlaceholder:"काहीही विचारा...",
-    submit:"सादर करा", cancel:"रद्द करा", back:"मागे", save:"सहेजा",
-    verified:"सत्यापित", pending:"प्रलंबित", download:"डाउनलोड",
-    share:"शेअर", sync:"सिंक", search:"शोधा",
-    unlock:"अनलॉक करा", lock:"लॉक करा", scan:"स्कॅन करा",
-    applyNow:"आता अर्ज करा", eligibility:"पात्रता",
+    secureLogin:"सुरक्षित लॉगिन", firebaseOtp:"Firebase OTP प्रमाणीकरण",
+    mobileNumber:"मोबाइल क्रमांक", getOtp:"📨 OTP मिळवा →",
+    sending:"⏳ OTP पाठवत आहे...", verifyOtp:"OTP सत्यापित करा",
+    verifying:"⏳ सत्यापन होत आहे...", loginSuccess:"लॉगिन यशस्वी!",
+    resendOtp:"↻ OTP पुन्हा पाठवा", demoMode:"डेमो:", demoHint:"कोणतेही 10 अंक · OTP:",
+    backBtn:"← मागे", signIn:"लॉगिन / नोंदणी", welcomeBack:"Sahayak मध्ये स्वागत 🙏",
     completeProfile:"प्रोफाइल पूर्ण करा", editProfile:"प्रोफाइल संपादित करा",
     fullName:"पूर्ण नाव", email:"ईमेल", city:"शहर", state:"राज्य",
     gender:"लिंग", dob:"जन्मतारीख", address:"पत्ता",
-    mobileNumber:"मोबाइल क्रमांक", getOtp:"OTP मिळवा",
-    verifyOtp:"OTP सत्यापित करा", resendOtp:"OTP पुन्हा पाठवा",
-    sending:"पाठवत आहे...", verifying:"सत्यापन होत आहे...",
-    loginSuccess:"लॉगिन यशस्वी!", analyzing:"AI विश्लेषण करत आहे...",
-    submitComplaint:"तक्रार सादर करा", viewHistory:"इतिहास पहा",
-    guardianMode:"गार्डियन मोड", silentSos:"सायलेंट SOS",
-    fakeCall:"फेक कॉल", recording:"रेकॉर्डिंग",
-    cancelEmergency:"आणीबाणी रद्द करा", quickAccess:"जलद प्रवेश",
-    recentComplaints:"अलीकडील तक्रारी", viewAll:"सर्व पहा",
-    allDocs:"सर्व दस्तावेज", favorite:"आवडते",
-    aiAssistant:"AI सहाय्यक", docScanner:"दस्तावेज स्कॅनर",
+    personalInfo:"वैयक्तिक माहिती", location:"स्थान", additional:"अतिरिक्त",
+    profileSaved:"✅ प्रोफाइल यशस्वीरित्या सहेजली!", stepOf:"चरण",
+    savedFirestore:"Firebase Firestore मध्ये सहेजले", skipNow:"आत्ता वगळा →", saving:"⏳ सहेजत आहे...",
+    welcome:"नमस्कार", logout:"बाहेर पडा",
+    sosTitle:"आणीबाणी SOS", sosHint:"5 सेकंद · पोलीस + कुटुंब तत्काळ सतर्क",
+    voiceWatch:"व्हॉइस वॉच", listening:"ऐकत आहे...", located:"स्थान मिळाले", getGps:"GPS मिळवा",
+    bgListening:"सतत बॅकग्राउंड ऐकणे", callingIn:"सेकंदात कॉल होईल — रद्द करण्यासाठी टॅप करा",
+    pressForSos:"आणीबाणी SOS साठी दाबा", quickAccess:"जलद प्रवेश",
+    recentComplaints:"अलीकडील तक्रारी", viewAll:"सर्व पहा", helplines:"हेल्पलाइन",
+    schemes:"योजना", aiBot:"AI बॉट",
+    emergency:"आणीबाणी हेल्पलाइन", emergencyActive:"आणीबाणी सक्रिय",
+    liveGps:"GPS ट्रॅकिंग LIVE", alertsDispatched:"अलर्ट पाठवले:",
+    cancelEmergency:"✋ आणीबाणी मोड रद्द करा", nearbyServices:"जवळील आपातकालीन सेवा",
+    all:"सर्व", hospitals:"रुग्णालये", policeStns:"पोलीस स्टेशन",
+    tapToCall:"कॉल करण्यासाठी नंबर टॅप करा · मोफत",
+    svc_police:"पोलीस", svc_police_desc:"गुन्हा / सुरक्षा",
+    svc_ambulance:"रुग्णवाहिका", svc_ambulance_desc:"वैद्यकीय आणीबाणी",
+    svc_fire:"अग्निशमन दल", svc_fire_desc:"आग आणीबाणी",
+    svc_women:"महिला हेल्पलाइन", svc_women_desc:"महिला सुरक्षा",
+    svc_disaster:"आपत्ती मदत", svc_disaster_desc:"नैसर्गिक आपत्ती",
+    svc_road:"रस्ता अपघात", svc_road_desc:"महामार्ग मदत",
+    svc_child:"बाल हेल्पलाइन", svc_child_desc:"CHILDLINE",
+    svc_cyber:"सायबर गुन्हा", svc_cyber_desc:"ऑनलाइन फसवणूक",
+    schemesTitle:"सरकारी योजना", govtVerified:"सरकार सत्यापित",
+    officialSchemes:"अधिकृत सरकारी पोर्टल · पात्रता · लाभ · अर्ज लिंक",
+    keyBenefits:"मुख्य लाभ", eligibilityCriteria:"पात्रता निकष",
+    howToApply:"अर्ज कसा करावा — चरण दर चरण", requiredDocs:"आवश्यक कागदपत्रे",
+    checkEligOnline:"🔍 ऑनलाइन पात्रता तपासा →", officialMinistry:"अधिकृत मंत्रालय",
+    smartRouting:"स्मार्ट पोर्टल रूटिंग", routedTo:"रूट केले →", helpline:"हेल्पलाइन →",
+    applyNow:"🚀 आता अर्ज करा", eligibility:"✅ पात्रता", askAi:"AI ला विचारा →",
+    digiLockerTip:"💡 अर्ज करण्यापूर्वी DigiLocker मध्ये सर्व कागदपत्रे तयार ठेवा.",
+    officialNote:"सर्व योजना भारत सरकारचे अधिकृत कार्यक्रम आहेत.",
+    grievanceTitle:"AI तक्रार सहाय्यक", gpsAutoDetect:"GPS ऑटो-डिटेक्ट · व्हॉइस · AI मसुदा · स्मार्ट रूटिंग",
+    newTab:"✏️ नवीन", historyTab:"📋 इतिहास",
+    noComplaints:"अद्याप तक्रारी नाहीत", noComplaintsHint:"नवीन टॅबमधून पहिली तक्रार दाखल करा",
+    fileNew:"+ नवीन तक्रार दाखल करा", step1:"1", step1Label:"स्थान ऑटो-डिटेक्ट",
+    autoDetectGps:"📍 GPS ऑटो-डिटेक्ट", detecting:"⏳ शोधत आहे...",
+    gpsPermDenied:"स्थान परवानगी नाकारली. मॅन्युअल प्रविष्ट करा.",
+    enterManually:"खाली तुमचे स्थान मॅन्युअल प्रविष्ट करा.",
+    liveLocationDetected:"लाइव्ह स्थान मिळाले", viewOnMaps:"🗺️ Google Maps वर पहा →",
+    editLocation:"✏️ संपादित करा", district:"जिल्हा", pincode:"पिनकोड",
+    area:"क्षेत्र / रस्ता (ऐच्छिक)", step2:"2", step2Label:"समस्येचा प्रकार",
+    step3:"3", step3Label:"वर्णन करा — टाइप करा किंवा बोला",
+    stopVoice:"थांबवा", voiceInput:"व्हॉइस",
+    complainPlaceholder:"उदा: 'रस्ता खराब आहे' किंवा 'पाणी 3 दिवस येत नाही' — कोणतीही भाषा",
+    voiceListenPlaceholder:"🎙️ ऐकत आहे... कोणत्याही भाषेत बोला...",
+    attachEvidence:"📷 पुरावा जोडा", photoAdded:"📷 फोटो जोडला ✓",
+    generateBtn:"🤖 AI ने तक्रार तयार करा", generating:"⚙️ AI तक्रार तयार करत आहे...",
+    aiAnalyzing:"AI तुमच्या तक्रारीचे विश्लेषण करत आहे...",
+    claudeAnalyzing:"Claude AI · ओळख · रूटिंग · मसुदा",
+    detectingCategory:"तक्रार श्रेणी ओळखत आहे", identifyingDept:"जबाबदार विभाग ओळखत आहे",
+    generatingDraft:"औपचारिक मसुदा तयार होत आहे", routingPortal:"अधिकृत पोर्टलवर रूट होत आहे",
+    done:"✓ झाले", processing:"● प्रक्रियेत",
+    aiGenerated:"✅ AI तक्रार तयार झाली",
+    category:"श्रेणी", dept:"विभाग", estDays:"अंदाजित दिवस", portal:"पोर्टल",
+    smartPortalRouting:"स्मार्ट पोर्टल रूटिंग सक्रिय",
+    aiDraftTitle:"📝 AI-निर्मित औपचारिक तक्रार मसुदा",
+    submitComplaint:"✅ तक्रार सादर करा", openPortal:"🌐 पोर्टल उघडा",
+    copyDraft:"📋 मसुदा कॉपी करा", copied:"✅ कॉपी झाले!",
+    submitTrack:"📊 सादर करा आणि ट्रॅक करा",
+    refGenerated:"सादर केल्यावर Ref# तयार होईल",
+    shikayatRegistered:"तक्रार नोंदवली!", officiallyFiled:"तुमची तक्रार अधिकृतपणे नोंदवली गेली",
+    referenceNo:"संदर्भ क्रमांक", estResolution:"अंदाजित निराकरण",
+    officialPortal:"अधिकृत पोर्टल", openPortalBtn:"🌐 पोर्टल उघडा",
+    trackComplaint:"📊 तक्रार ट्रॅक करा", viewHistory:"इतिहास पहा",
+    submitComplaintBtn:"तक्रार सादर करा",
+    submitted:"सादर", reviewed:"पुनरावलोकन", inProgress:"प्रगतीत", resolved:"निराकरण झाले",
+    priority:"प्राधान्य", high:"उच्च", medium:"मध्यम", low:"कमी",
+    digilockerTitle:"डिजिलॉकर", digiProtected:"डिजिलॉकर संरक्षित",
+    enterPin:"4-अंकी PIN प्रविष्ट करा", unlock:"🔓 डिजिलॉकर अनलॉक करा", lock:"🔒 लॉक",
+    demo4digit:"डेमो: कोणतेही 4 अंक प्रविष्ट करा", securityFeatures:"सुरक्षा वैशिष्ट्ये",
+    digiSecDesc:"PIN · फेस लॉक · फिंगरप्रिंट · एन्क्रिप्टेड",
+    verified:"सत्यापित", pending:"प्रलंबित", download:"⬇️ डाउनलोड",
+    share:"📤 शेअर", print:"🖨️ प्रिंट", sync:"⟳ सिंक",
+    search:"दस्तावेज शोधा...", digiLinked:"LINKED", digiKyc:"KYC ✓",
+    govtVerifiedBadge:"सरकार सत्यापित", verifiedDocs:"सत्यापित",
+    allDocs:"📁 सर्व दस्तावेज", docScanner:"📷 स्कॅनर", aiAssistant:"🤖 AI सहाय्यक",
+    yourDocs:"तुमचे दस्तावेज",
+    qrVerify:"QR सत्यापन बॅज", qrVerifyDesc:"सरकारी संस्था त्वरित सत्यापित करू शकतात",
+    lastSynced:"शेवटी सिंक", copyNum:"कॉपी करा", numCopied:"📋 क्रमांक कॉपी झाला!",
+    docScanned:"✅ दस्तावेज स्कॅन झाला!", dataExtracted:"डेटा यशस्वीरित्या काढला.",
+    placeDoc:"येथे दस्तावेज ठेवा", scanSupported:"Aadhaar, PAN, DL, Passport",
+    scanning:"दस्तावेज स्कॅन होत आहे...", aiExtracting:"AI मजकूर काढत आहे...",
+    scanDoc:"📷 दस्तावेज स्कॅन करा", rescan:"पुन्हा स्कॅन करा",
+    autoFillProfile:"प्रोफाइल ऑटो-भरा", ocrComplete:"✅ OCR निष्कर्षण पूर्ण",
+    syncSuccess:"🗂️ डिजिलॉकर सिंक झाला!", syncDesc:"सर्व दस्तावेज अपडेट झाले.",
+    digiEndToEnd:"सर्व दस्तावेज एंड-टू-एंड एन्क्रिप्टेड आहेत.",
+    aiDocTitle:"AI दस्तावेज सहाय्यक", aiDocDesc:"दस्तावेजांबद्दल स्मार्ट सूचना.",
+    voterMissing:"वोटर ID प्रलंबित", dlExpiry:"DL समाप्ती अनुस्मारक",
+    addHealthCard:"स्वास्थ्य कार्ड जोडा", profileComplete:"प्रोफाइल 88% पूर्ण",
+    enableBiometric:"बायोमेट्रिक लॉक सक्षम करा",
+    linkNow:"आता लिंक करा", remindMe:"मला आठवण करा", addDoc:"दस्तावेज जोडा",
+    upload:"अपलोड", setup:"सेटअप",
+    womenSafetyTitle:"महिला सुरक्षा", womenSubtitle:"प्रगत संरक्षण · सायलेंट SOS · गार्डियन · फेक कॉल",
+    guardianMode:"गार्डियन मोड", guardianDesc:"लाइव्ह GPS विश्वासू संपर्कांसह सतत शेअर",
+    sharingWith:"📡 सह लाइव्ह स्थान शेअर होत आहे:",
+    silentSos:"🤫 सायलेंट SOS (तीनदा टॅप)", silentSosDesc:"3× टॅप करून शांतपणे आणीबाणी ट्रिगर करा.",
+    tap3x:"3× टॅप करा सायलेंट SOS साठी", tap2more:"2 वेळा अधिक टॅप करा...",
+    tap1more:"1 वेळ अधिक टॅप करा...", tapsRegistered:"टॅप नोंदवले",
+    fakeCall:"📞 फेक कॉल जनरेटर", fakeCallDesc:"असुरक्षित परिस्थितीतून बाहेर पडण्यासाठी बनावट कॉल.",
+    now:"आत्ता", tenSec:"10 सेकंद", thirtySec:"30 सेकंद",
+    recording:"रेकॉर्डिंग", recTitle:"🎙️ आणीबाणी रेकॉर्डिंग",
+    recDesc:"कायदेशीर पुरावा म्हणून ऑडिओ रेकॉर्ड करा. Firebase Storage मध्ये सुरक्षित.",
+    stop:"⏹ थांबवा", start:"🔴 सुरू करा",
+    fakeCallRinging:"📞 फेक कॉल वाजत आहे", incomingCall:"INCOMING CALL",
+    decline:"नाकारा", accept:"स्वीकारा",
+    womenHelpline:"महिला हेल्पलाइन", womenHelplineDesc:"24/7 · मोफत · गोपनीय · टॅप करा",
+    chatPlaceholder:"काहीही विचारा...", botTitle:"SahayakBot AI", botSubtitle:"Claude-संचालित · 24/7",
+    adminTitle:"Admin Dashboard", adminSubtitle:"लाइव्ह · रियल-टाइम · सरकारी अधिकारी",
+    realTime:"REAL-TIME", liveFeed:"🚨 लाइव्ह आणीबाणी फीड",
+    systemPerf:"⚡ सिस्टम कामगिरी",
+    overview:"आढावा", heatmap:"हीटमॅप", complaints:"तक्रारी", infra:"इन्फ्रा",
+    districtHeatmap:"🗺️ जिल्हा तक्रार हीटमॅप", heatmapDesc:"तक्रार + आणीबाणी घनता — दिल्ली NCR",
+    complaintCategories:"📂 तक्रार श्रेण्या", serviceHealth:"🏗️ सेवा स्वास्थ्य",
+    productionArch:"☁️ उत्पादन वास्तुकला",
+    save:"सहेजा", cancel:"रद्द करा", back:"मागे", submit:"सादर करा",
+    offline:"📶 ऑफलाइन", offlineBanner:"ऑफलाइन मोड — SOS आणि GPS अजूनही उपलब्ध.",
+    liveStatus:"LIVE", offlineStatus:"OFFLINE",
+    notifications:"सूचना", markAllRead:"सर्व वाचले",
+    profileTitle:"प्रोफाइल", digiLockerId:"DigiLocker ID:",
+    copySuccess:"📋 क्रमांक कॉपी झाला!", recordingStarted:"🔴 रेकॉर्डिंग सुरू झाली",
+    recordingSaved:"⏹ रेकॉर्डिंग सहेजली", guardianOn:"🛡️ गार्डियन मोड चालू!",
+    guardianOff:"गार्डियन मोड बंद", fakeRinging:"📞 फेक कॉल वाजत आहे",
+    draftCopied:"📋 तक्रार मसुदा क्लिपबोर्डवर कॉपी झाला!",
+    eSahayak:"🇮🇳 एक भारत, श्रेष्ठ भारत",
   },
+
   বাংলা: {
     appName:"সহায়ক", tagline:"AI নাগরিক সুপার অ্যাপ", version:"v4.0",
     home:"হোম", sos:"SOS", yojana:"প্রকল্প", complaint:"অভিযোগ",
     docs:"ডিজিলকার", safety:"নিরাপত্তা", bot:"বট", admin:"প্রশাসন",
-    welcome:"নমস্কার", signIn:"লগইন / নিবন্ধন", logout:"লগআউট",
-    sosTitle:"জরুরি SOS", sosHint:"৫ সেকেন্ড · পুলিশ + পরিবার তৎক্ষণাৎ সতর্ক",
-    voiceWatch:"ভয়েস ওয়াচ", listening:"শুনছি...",
-    located:"অবস্থান পাওয়া গেছে", getGps:"GPS নিন",
-    emergency:"জরুরি হেল্পলাইন", schemesTitle:"সরকারি প্রকল্প",
-    grievanceTitle:"AI অভিযোগ সহায়তা", digilockerTitle:"ডিজিলকার",
-    womenSafetyTitle:"নারী নিরাপত্তা", chatPlaceholder:"যেকোনো কিছু জিজ্ঞেস করুন...",
-    submit:"জমা দিন", cancel:"বাতিল", back:"ফিরে যান", save:"সংরক্ষণ",
-    verified:"যাচাইকৃত", pending:"মুলতুবি", download:"ডাউনলোড",
-    share:"শেয়ার", sync:"সিঙ্ক", search:"খুঁজুন",
-    unlock:"আনলক করুন", lock:"লক করুন", scan:"স্ক্যান করুন",
-    applyNow:"এখনই আবেদন করুন", eligibility:"যোগ্যতা",
+    secureLogin:"নিরাপদ লগইন", firebaseOtp:"Firebase OTP প্রমাণীকরণ",
+    mobileNumber:"মোবাইল নম্বর", getOtp:"📨 OTP নিন →",
+    sending:"⏳ OTP পাঠানো হচ্ছে...", verifyOtp:"OTP যাচাই করুন",
+    verifying:"⏳ যাচাই হচ্ছে...", loginSuccess:"লগইন সফল!",
+    resendOtp:"↻ OTP পুনরায় পাঠান", demoMode:"ডেমো:", demoHint:"যেকোনো 10 সংখ্যা · OTP:",
+    backBtn:"← ফিরে", signIn:"লগইন / নিবন্ধন", welcomeBack:"Sahayak-এ স্বাগতম 🙏",
     completeProfile:"প্রোফাইল সম্পূর্ণ করুন", editProfile:"প্রোফাইল সম্পাদনা",
     fullName:"পুরো নাম", email:"ইমেইল", city:"শহর", state:"রাজ্য",
     gender:"লিঙ্গ", dob:"জন্ম তারিখ", address:"ঠিকানা",
-    mobileNumber:"মোবাইল নম্বর", getOtp:"OTP নিন",
-    verifyOtp:"OTP যাচাই করুন", resendOtp:"OTP পুনরায় পাঠান",
-    sending:"পাঠানো হচ্ছে...", verifying:"যাচাই হচ্ছে...",
-    loginSuccess:"লগইন সফল!", analyzing:"AI বিশ্লেষণ করছে...",
-    submitComplaint:"অভিযোগ জমা দিন", viewHistory:"ইতিহাস দেখুন",
-    guardianMode:"অভিভাবক মোড", silentSos:"নিরব SOS",
-    fakeCall:"নকল কল", recording:"রেকর্ডিং",
-    cancelEmergency:"জরুরি অবস্থা বাতিল", quickAccess:"দ্রুত প্রবেশ",
-    recentComplaints:"সাম্প্রতিক অভিযোগ", viewAll:"সব দেখুন",
-    allDocs:"সব নথি", favorite:"পছন্দের",
-    aiAssistant:"AI সহায়তা", docScanner:"নথি স্ক্যানার",
+    personalInfo:"ব্যক্তিগত তথ্য", location:"অবস্থান", additional:"অতিরিক্ত",
+    profileSaved:"✅ প্রোফাইল সফলভাবে সংরক্ষিত!", stepOf:"ধাপ",
+    savedFirestore:"Firebase Firestore-এ সংরক্ষিত", skipNow:"এখন এড়িয়ে যান →", saving:"⏳ সংরক্ষণ হচ্ছে...",
+    welcome:"নমস্কার", logout:"লগআউট",
+    sosTitle:"জরুরি SOS", sosHint:"৫ সেকেন্ড · পুলিশ + পরিবার তৎক্ষণাৎ সতর্ক",
+    voiceWatch:"ভয়েস ওয়াচ", listening:"শুনছি...", located:"অবস্থান পাওয়া গেছে", getGps:"GPS নিন",
+    bgListening:"ক্রমাগত ব্যাকগ্রাউন্ড শোনা", callingIn:"সেকেন্ডে কল হবে — বাতিল করতে ট্যাপ করুন",
+    pressForSos:"জরুরি SOS-এর জন্য চাপুন", quickAccess:"দ্রুত প্রবেশ",
+    recentComplaints:"সাম্প্রতিক অভিযোগ", viewAll:"সব দেখুন", helplines:"হেল্পলাইন",
+    schemes:"প্রকল্প", aiBot:"AI বট",
+    emergency:"জরুরি হেল্পলাইন", emergencyActive:"জরুরি অবস্থা সক্রিয়",
+    liveGps:"GPS ট্র্যাকিং LIVE", alertsDispatched:"সতর্কতা পাঠানো হয়েছে:",
+    cancelEmergency:"✋ জরুরি মোড বাতিল করুন", nearbyServices:"কাছাকাছি জরুরি সেবা",
+    all:"সব", hospitals:"হাসপাতাল", policeStns:"পুলিশ স্টেশন",
+    tapToCall:"কল করতে নম্বর ট্যাপ করুন · বিনামূল্যে",
+    svc_police:"পুলিশ", svc_police_desc:"অপরাধ / নিরাপত্তা",
+    svc_ambulance:"অ্যাম্বুলেন্স", svc_ambulance_desc:"চিকিৎসা জরুরি",
+    svc_fire:"দমকল বাহিনী", svc_fire_desc:"আগুন জরুরি",
+    svc_women:"নারী হেল্পলাইন", svc_women_desc:"নারী নিরাপত্তা",
+    svc_disaster:"দুর্যোগ ত্রাণ", svc_disaster_desc:"প্রাকৃতিক দুর্যোগ",
+    svc_road:"সড়ক দুর্ঘটনা", svc_road_desc:"মহাসড়ক সহায়তা",
+    svc_child:"শিশু হেল্পলাইন", svc_child_desc:"CHILDLINE",
+    svc_cyber:"সাইবার অপরাধ", svc_cyber_desc:"অনলাইন প্রতারণা",
+    schemesTitle:"সরকারি প্রকল্প", govtVerified:"সরকার যাচাইকৃত",
+    officialSchemes:"আধিকারিক সরকারি পোর্টাল · যোগ্যতা · সুবিধা · আবেদন লিঙ্ক",
+    keyBenefits:"মূল সুবিধা", eligibilityCriteria:"যোগ্যতার মানদণ্ড",
+    howToApply:"কিভাবে আবেদন করবেন — ধাপে ধাপে", requiredDocs:"প্রয়োজনীয় নথি",
+    checkEligOnline:"🔍 অনলাইনে যোগ্যতা যাচাই করুন →", officialMinistry:"আধিকারিক মন্ত্রণালয়",
+    smartRouting:"স্মার্ট পোর্টাল রাউটিং", routedTo:"রুট করা হয়েছে →", helpline:"হেল্পলাইন →",
+    applyNow:"🚀 এখনই আবেদন করুন", eligibility:"✅ যোগ্যতা", askAi:"AI-কে জিজ্ঞেস করুন →",
+    digiLockerTip:"💡 আবেদনের আগে DigiLocker-এ সব নথি প্রস্তুত রাখুন।",
+    officialNote:"সব প্রকল্প ভারত সরকারের আধিকারিক কর্মসূচি।",
+    grievanceTitle:"AI অভিযোগ সহায়তা", gpsAutoDetect:"GPS স্বয়ংক্রিয় · ভয়েস · AI খসড়া · স্মার্ট রাউটিং",
+    newTab:"✏️ নতুন", historyTab:"📋 ইতিহাস",
+    noComplaints:"এখনও কোনো অভিযোগ নেই", noComplaintsHint:"নতুন ট্যাব থেকে প্রথম অভিযোগ দাখিল করুন",
+    fileNew:"+ নতুন অভিযোগ দাখিল করুন", step1:"1", step1Label:"অবস্থান স্বয়ংক্রিয় সনাক্ত",
+    autoDetectGps:"📍 GPS স্বয়ংক্রিয় সনাক্ত", detecting:"⏳ সনাক্ত হচ্ছে...",
+    gpsPermDenied:"অবস্থানের অনুমতি প্রত্যাখ্যান। ম্যানুয়ালি প্রবেশ করুন।",
+    enterManually:"নিচে আপনার অবস্থান ম্যানুয়ালি লিখুন।",
+    liveLocationDetected:"লাইভ অবস্থান পাওয়া গেছে", viewOnMaps:"🗺️ Google Maps-এ দেখুন →",
+    editLocation:"✏️ সম্পাদনা", district:"জেলা", pincode:"পিনকোড",
+    area:"এলাকা / রাস্তা (ঐচ্ছিক)", step2:"2", step2Label:"সমস্যার ধরন",
+    step3:"3", step3Label:"বর্ণনা করুন — টাইপ বা বলুন",
+    stopVoice:"বন্ধ", voiceInput:"ভয়েস",
+    complainPlaceholder:"যেমন: 'রাস্তা ভাঙা' বা '৩ দিন পানি নেই' — যেকোনো ভাষা",
+    voiceListenPlaceholder:"🎙️ শুনছি... যেকোনো ভাষায় বলুন...",
+    attachEvidence:"📷 প্রমাণ সংযুক্ত করুন", photoAdded:"📷 ছবি যোগ করা হয়েছে ✓",
+    generateBtn:"🤖 AI দিয়ে অভিযোগ তৈরি করুন", generating:"⚙️ AI অভিযোগ তৈরি করছে...",
+    aiAnalyzing:"AI আপনার অভিযোগ বিশ্লেষণ করছে...",
+    claudeAnalyzing:"Claude AI · সনাক্তকরণ · রাউটিং · খসড়া",
+    detectingCategory:"অভিযোগ বিভাগ সনাক্ত হচ্ছে", identifyingDept:"দায়িত্বশীল বিভাগ সনাক্ত হচ্ছে",
+    generatingDraft:"আনুষ্ঠানিক খসড়া চিঠি তৈরি হচ্ছে", routingPortal:"আধিকারিক পোর্টালে রুট হচ্ছে",
+    done:"✓ সম্পন্ন", processing:"● প্রক্রিয়াধীন",
+    aiGenerated:"✅ AI অভিযোগ তৈরি হয়েছে",
+    category:"বিভাগ", dept:"দপ্তর", estDays:"আনু. দিন", portal:"পোর্টাল",
+    smartPortalRouting:"স্মার্ট পোর্টাল রাউটিং সক্রিয়",
+    aiDraftTitle:"📝 AI-নির্মিত আনুষ্ঠানিক অভিযোগ খসড়া",
+    submitComplaint:"✅ অভিযোগ জমা দিন", openPortal:"🌐 পোর্টাল খুলুন",
+    copyDraft:"📋 খসড়া কপি করুন", copied:"✅ কপি হয়েছে!",
+    submitTrack:"📊 জমা দিন এবং ট্র্যাক করুন",
+    refGenerated:"জমা দিলে Ref# তৈরি হবে",
+    shikayatRegistered:"অভিযোগ নিবন্ধিত!", officiallyFiled:"আপনার অভিযোগ আধিকারিকভাবে দাখিল হয়েছে",
+    referenceNo:"রেফারেন্স নং", estResolution:"আনু. সমাধান",
+    officialPortal:"আধিকারিক পোর্টাল", openPortalBtn:"🌐 পোর্টাল খুলুন",
+    trackComplaint:"📊 অভিযোগ ট্র্যাক করুন", viewHistory:"ইতিহাস দেখুন",
+    submitComplaintBtn:"অভিযোগ জমা দিন",
+    submitted:"জমা", reviewed:"পর্যালোচিত", inProgress:"চলমান", resolved:"সমাধান হয়েছে",
+    priority:"অগ্রাধিকার", high:"উচ্চ", medium:"মাঝারি", low:"কম",
+    digilockerTitle:"ডিজিলকার", digiProtected:"ডিজিলকার সুরক্ষিত",
+    enterPin:"4-সংখ্যার PIN প্রবেশ করুন", unlock:"🔓 ডিজিলকার আনলক করুন", lock:"🔒 লক",
+    demo4digit:"ডেমো: যেকোনো 4 সংখ্যা প্রবেশ করুন", securityFeatures:"নিরাপত্তা বৈশিষ্ট্য",
+    digiSecDesc:"PIN · ফেস লক · ফিঙ্গারপ্রিন্ট · এনক্রিপ্টেড",
+    verified:"যাচাইকৃত", pending:"মুলতুবি", download:"⬇️ ডাউনলোড",
+    share:"📤 শেয়ার", print:"🖨️ প্রিন্ট", sync:"⟳ সিঙ্ক",
+    search:"নথি খুঁজুন...", digiLinked:"LINKED", digiKyc:"KYC ✓",
+    govtVerifiedBadge:"সরকার যাচাইকৃত", verifiedDocs:"যাচাইকৃত",
+    allDocs:"📁 সব নথি", docScanner:"📷 স্ক্যানার", aiAssistant:"🤖 AI সহায়তা",
+    yourDocs:"আপনার নথি",
+    qrVerify:"QR যাচাই ব্যাজ", qrVerifyDesc:"সরকারি সংস্থাগুলি তাৎক্ষণিকভাবে যাচাই করতে পারে",
+    lastSynced:"শেষ সিঙ্ক", copyNum:"কপি", numCopied:"📋 নথি নম্বর কপি হয়েছে!",
+    docScanned:"✅ নথি স্ক্যান হয়েছে!", dataExtracted:"ডেটা সফলভাবে বের করা হয়েছে।",
+    placeDoc:"এখানে নথি রাখুন", scanSupported:"Aadhaar, PAN, DL, Passport",
+    scanning:"নথি স্ক্যান হচ্ছে...", aiExtracting:"AI টেক্সট বের করছে...",
+    scanDoc:"📷 নথি স্ক্যান করুন", rescan:"পুনরায় স্ক্যান করুন",
+    autoFillProfile:"প্রোফাইল স্বয়ংক্রিয়ভাবে পূরণ করুন", ocrComplete:"✅ OCR নিষ্কাশন সম্পূর্ণ",
+    syncSuccess:"🗂️ ডিজিলকার সিঙ্ক হয়েছে!", syncDesc:"সব নথি আপডেট হয়েছে।",
+    digiEndToEnd:"সব নথি এন্ড-টু-এন্ড এনক্রিপ্টেড।",
+    aiDocTitle:"AI নথি সহায়তা", aiDocDesc:"আপনার নথি সম্পর্কে স্মার্ট পরামর্শ।",
+    voterMissing:"ভোটার ID মুলতুবি", dlExpiry:"DL মেয়াদোত্তীর্ণ অনুস্মারক",
+    addHealthCard:"স্বাস্থ্য কার্ড যোগ করুন", profileComplete:"প্রোফাইল ৮৮% সম্পূর্ণ",
+    enableBiometric:"বায়োমেট্রিক লক সক্ষম করুন",
+    linkNow:"এখনই লিঙ্ক করুন", remindMe:"আমাকে মনে করিয়ে দিন", addDoc:"নথি যোগ করুন",
+    upload:"আপলোড", setup:"সেটআপ",
+    womenSafetyTitle:"নারী নিরাপত্তা", womenSubtitle:"উন্নত সুরক্ষা · নিরব SOS · অভিভাবক · নকল কল",
+    guardianMode:"অভিভাবক মোড", guardianDesc:"লাইভ GPS বিশ্বস্ত পরিচিতিদের সাথে ক্রমাগত শেয়ার",
+    sharingWith:"📡 সাথে লাইভ অবস্থান শেয়ার হচ্ছে:",
+    silentSos:"🤫 নিরব SOS (তিনবার ট্যাপ)", silentSosDesc:"3× ট্যাপ করে নীরবে জরুরি অবস্থা চালু করুন।",
+    tap3x:"3× ট্যাপ করুন নিরব SOS-এর জন্য", tap2more:"আরও ২ বার ট্যাপ করুন...",
+    tap1more:"আরও ১ বার ট্যাপ করুন...", tapsRegistered:"ট্যাপ নিবন্ধিত",
+    fakeCall:"📞 নকল কল জেনারেটর", fakeCallDesc:"অনিরাপদ পরিস্থিতি থেকে নিরাপদে বের হতে নকল কল।",
+    now:"এখনই", tenSec:"১০ সেকেন্ড", thirtySec:"৩০ সেকেন্ড",
+    recording:"রেকর্ডিং", recTitle:"🎙️ জরুরি রেকর্ডিং",
+    recDesc:"আইনি প্রমাণ হিসেবে অডিও রেকর্ড করুন। Firebase Storage-এ নিরাপদ।",
+    stop:"⏹ বন্ধ", start:"🔴 শুরু",
+    fakeCallRinging:"📞 নকল কল বাজছে", incomingCall:"INCOMING CALL",
+    decline:"প্রত্যাখ্যান", accept:"গ্রহণ",
+    womenHelpline:"নারী হেল্পলাইন", womenHelplineDesc:"24/7 · বিনামূল্যে · গোপনীয় · ট্যাপ করুন",
+    chatPlaceholder:"যেকোনো কিছু জিজ্ঞেস করুন...", botTitle:"SahayakBot AI", botSubtitle:"Claude-চালিত · 24/7",
+    adminTitle:"Admin Dashboard", adminSubtitle:"লাইভ · রিয়েল-টাইম · সরকারি কর্মকর্তা",
+    realTime:"REAL-TIME", liveFeed:"🚨 লাইভ জরুরি ফিড",
+    systemPerf:"⚡ সিস্টেম কর্মক্ষমতা",
+    overview:"ওভারভিউ", heatmap:"হিটম্যাপ", complaints:"অভিযোগ", infra:"ইনফ্রা",
+    districtHeatmap:"🗺️ জেলা অভিযোগ হিটম্যাপ", heatmapDesc:"অভিযোগ + জরুরি ঘনত্ব — দিল্লি NCR",
+    complaintCategories:"📂 অভিযোগ বিভাগ", serviceHealth:"🏗️ সেবা স্বাস্থ্য",
+    productionArch:"☁️ উৎপাদন স্থাপত্য",
+    save:"সংরক্ষণ", cancel:"বাতিল", back:"ফিরে", submit:"জমা দিন",
+    offline:"📶 অফলাইন", offlineBanner:"অফলাইন মোড — SOS ও GPS এখনও উপলব্ধ।",
+    liveStatus:"LIVE", offlineStatus:"OFFLINE",
+    notifications:"বিজ্ঞপ্তি", markAllRead:"সব পড়া হয়েছে",
+    profileTitle:"প্রোফাইল", digiLockerId:"DigiLocker ID:",
+    copySuccess:"📋 নম্বর কপি হয়েছে!", recordingStarted:"🔴 রেকর্ডিং শুরু হয়েছে",
+    recordingSaved:"⏹ রেকর্ডিং সংরক্ষিত", guardianOn:"🛡️ অভিভাবক মোড চালু!",
+    guardianOff:"অভিভাবক মোড বন্ধ", fakeRinging:"📞 নকল কল বাজছে",
+    draftCopied:"📋 অভিযোগ খসড়া ক্লিপবোর্ডে কপি হয়েছে!",
+    eSahayak:"🇮🇳 এক ভারত, শ্রেষ্ঠ ভারত",
   },
 };
-// Auto-fill remaining languages from English
+
+// Auto-fill Tamil, Telugu, Gujarati, Punjabi from English then add native app name
 ["தமிழ்","తెలుగు","ગુજરાતી","ਪੰਜਾਬੀ"].forEach(l => {
   TRANSLATIONS[l] = { ...TRANSLATIONS["English"] };
 });
+// Native app names for auto-filled languages
+TRANSLATIONS["தமிழ்"].appName   = "சகாயக்";
+TRANSLATIONS["తెలుగు"].appName  = "సహాయక్";
+TRANSLATIONS["ગુજરાતી"].appName = "સહાયક";
+TRANSLATIONS["ਪੰਜਾਬੀ"].appName  = "ਸਹਾਇਕ";
+
 const LANGUAGES = Object.keys(TRANSLATIONS);
+
 
 // ── STATIC DATA ───────────────────────────────────────────────────
 const SERVICES = [
@@ -860,9 +1375,20 @@ export default function SahayakApp() {
   const [ocrResult, setOcrResult]   = useState(null);
 
   // ── Complaint ─────────────────────────────────────────────────
-  const [cForm, setCForm]     = useState({ type:null, text:"", district:"", ai:null, loading:false, submitted:false, ref:"", photo:null });
+  const [cForm, setCForm] = useState({
+    type:null, text:"", title:"", district:"", state:"", city:"", area:"", pincode:"",
+    lat:"", lng:"", ai:null, loading:false, submitted:false, ref:"", photo:null,
+    draftTyped:"", // animated typing state
+    copied:false,  // copy feedback
+  });
   const [complaints, setComplaints] = useState(MOCK_COMPLAINTS);
   const [cView, setCView]     = useState("new");
+  const [cGpsLoad, setCGpsLoad]     = useState(false); // GPS fetching state
+  const [cGpsError, setCGpsError]   = useState("");    // GPS error message
+  const [cVoiceOn, setCVoiceOn]     = useState(false); // voice input for complaint
+  const [cAutoAnalyze, setCAutoAnalyze] = useState(false); // auto-analyze on type
+  const cVoiceRef = useRef(null);
+  const draftTypeTimer = useRef(null);
 
   // ── Schemes ───────────────────────────────────────────────────
   const [schemeOpen, setSchemeOpen]               = useState(null);
@@ -1034,35 +1560,199 @@ export default function SahayakApp() {
   };
 
   // ── Complaint AI ──────────────────────────────────────────────
+  // ── GPS Auto-detect location for complaint ───────────────────
+  const detectComplaintLocation = () => {
+    setCGpsLoad(true); setCGpsError("");
+    if (!navigator.geolocation) {
+      setCGpsError("GPS not supported. Enter location manually.");
+      setCGpsLoad(false); return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      async pos => {
+        const lat = pos.coords.latitude.toFixed(5);
+        const lng = pos.coords.longitude.toFixed(5);
+        // Reverse geocode via nominatim (free, no key required)
+        try {
+          const res = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&addressdetails=1`,
+            { headers:{ "Accept-Language":"en" } }
+          );
+          const geo = await res.json();
+          const a = geo.address || {};
+          setCForm(c => ({
+            ...c,
+            lat, lng,
+            city:    a.city || a.town || a.village || a.county || "",
+            district:a.county || a.state_district || a.city || "",
+            state:   a.state || "",
+            area:    a.suburb || a.neighbourhood || a.road || "",
+            pincode: a.postcode || "",
+          }));
+          notify("📍 Location auto-detected successfully!");
+        } catch {
+          // Coords only if geocode fails
+          setCForm(c => ({ ...c, lat, lng, city:"Your City", district:"Your District", state:"Your State" }));
+          notify("📍 GPS coordinates captured");
+        }
+        setCGpsLoad(false);
+      },
+      err => {
+        const msg = err.code === 1
+          ? "Location permission denied. Enter manually."
+          : "Could not detect location. Try again.";
+        setCGpsError(msg); setCGpsLoad(false);
+      },
+      { timeout:10000, enableHighAccuracy:true }
+    );
+  };
+
+  // ── Voice input for complaint ─────────────────────────────────
+  const startComplaintVoice = () => {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) { notify("Voice requires Chrome browser", "error"); return; }
+    const rec = new SR(); cVoiceRef.current = rec;
+    rec.continuous = false; rec.interimResults = true; rec.lang = "hi-IN";
+    setCVoiceOn(true);
+    rec.onresult = e => {
+      const tx = Array.from(e.results).map(r => r[0].transcript).join(" ");
+      setCForm(c => ({ ...c, text: tx, ai:null }));
+    };
+    rec.onerror = () => setCVoiceOn(false);
+    rec.onend = () => { setCVoiceOn(false); };
+    rec.start();
+  };
+  const stopComplaintVoice = () => { cVoiceRef.current?.stop(); setCVoiceOn(false); };
+
+  // ── Animate typed draft text ──────────────────────────────────
+  const animateDraft = (fullText) => {
+    clearInterval(draftTypeTimer.current);
+    let i = 0;
+    setCForm(c => ({ ...c, draftTyped:"" }));
+    draftTypeTimer.current = setInterval(() => {
+      i++;
+      setCForm(c => ({ ...c, draftTyped: fullText.slice(0, i) }));
+      if (i >= fullText.length) clearInterval(draftTypeTimer.current);
+    }, 14);
+  };
+
+  // ── Portal routing map ────────────────────────────────────────
+  const PORTAL_MAP = {
+    "Road":        { url:"https://pgportal.gov.in",         label:"CPGRAMS / PWD Portal" },
+    "Street Light":{ url:"https://pgportal.gov.in",         label:"DISCOM Grievance" },
+    "Water":       { url:"https://jalshakti-ddws.gov.in",   label:"Jal Shakti Portal" },
+    "Garbage":     { url:"https://swachhbharatmission.gov.in",label:"SBM Portal" },
+    "Sewage":      { url:"https://jalshakti-ddws.gov.in",   label:"Jal Board Portal" },
+    "Construction":{ url:"https://pgportal.gov.in",         label:"Building Dept. Portal" },
+    "Corrupt":     { url:"https://cvc.gov.in",              label:"CVC / CPGRAMS" },
+    "Noise":       { url:"https://cpcb.nic.in",             label:"CPCB Portal" },
+    "General":     { url:"https://pgportal.gov.in",         label:"CPGRAMS Portal" },
+  };
+
+  const getPortalForComplaint = (category) => {
+    const key = Object.keys(PORTAL_MAP).find(k =>
+      (category||"").toLowerCase().includes(k.toLowerCase())
+    );
+    return PORTAL_MAP[key] || PORTAL_MAP["General"];
+  };
+
+  // ── AI analyze complaint ──────────────────────────────────────
   const analyzeComplaint = async txt => {
-    setCForm(c => ({ ...c, loading:true, ai:null }));
+    setCForm(c => ({ ...c, loading:true, ai:null, draftTyped:"" }));
+    const locationCtx = cForm.district
+      ? `Location: ${cForm.district}, ${cForm.state}.`
+      : "";
     try {
       const res = await fetch(ENV.CLAUDE_API_URL, {
         method:"POST", headers:{ "Content-Type":"application/json" },
         body: JSON.stringify({
-          model: ENV.CLAUDE_MODEL, max_tokens:600,
-          system:`Indian government grievance AI. Return ONLY valid JSON (no markdown):
-{"category":"...","department":"...","priority":"High|Medium|Low","draft":"3-sentence formal complaint","portal":"pgportal.gov.in","estimatedDays":7,"tip":"short Hinglish tip"}`,
-          messages:[{ role:"user", content:`Complaint: ${txt}` }]
+          model: ENV.CLAUDE_MODEL, max_tokens:800,
+          system:`You are an Indian government grievance AI. ${locationCtx}
+Return ONLY valid JSON (no markdown, no extra text):
+{
+  "title": "Short 5-7 word complaint title",
+  "category": "Road|Water|Garbage|Electricity|Sewage|Corruption|Noise|General",
+  "department": "Full department name",
+  "priority": "High|Medium|Low",
+  "draft": "3-sentence formal complaint letter with To: [Dept], Subject: [Issue], Body: [Details]. Use professional language.",
+  "portal": "exact portal URL",
+  "portalName": "Portal display name",
+  "estimatedDays": 7,
+  "tip": "Short actionable Hinglish tip under 12 words"
+}`,
+          messages:[{ role:"user", content:`User complaint: "${txt}"
+${locationCtx}` }]
         })
       });
       const data = await res.json();
       const raw = data.content?.map(c => c.text||"").join("") || "{}";
       const parsed = JSON.parse(raw.replace(/```json|```/g,"").trim());
+      // auto-route portal based on category if not provided
+      if (!parsed.portal || parsed.portal === "pgportal.gov.in") {
+        const routed = getPortalForComplaint(parsed.category);
+        if (!parsed.portal) parsed.portal = routed.url;
+        if (!parsed.portalName) parsed.portalName = routed.label;
+      }
       setCForm(c => ({ ...c, loading:false, ai:parsed }));
+      animateDraft(parsed.draft || "");
+      notify("✅ AI analysis complete! Draft generated.");
     } catch {
-      setCForm(c => ({ ...c, loading:false, ai:{ category:"General", department:"Municipal Corporation", priority:"Medium", draft:txt, portal:"pgportal.gov.in", estimatedDays:7, tip:"pgportal.gov.in pe submit karo." }}));
+      const fallback = {
+        title: "Civic Issue Complaint",
+        category:"General", department:"Municipal Corporation", priority:"Medium",
+        draft:`To,\nThe Municipal Commissioner,\n\nSub: ${txt}\n\nI would like to bring to your kind attention the above-mentioned civic issue in my locality. This has been causing inconvenience to residents and requires immediate intervention. Kindly look into this matter and take appropriate action at the earliest.\n\nYours faithfully,\n[Your Name]`,
+        portal:"https://pgportal.gov.in", portalName:"CPGRAMS Portal", estimatedDays:7,
+        tip:"pgportal.gov.in pe complaint ID se track karo."
+      };
+      setCForm(c => ({ ...c, loading:false, ai:fallback }));
+      animateDraft(fallback.draft);
     }
   };
 
   const submitComplaint = () => {
     const ref = genRef();
-    setComplaints(prev => [{ id:ref, type:cForm.type?.split("/")[0].trim()||"General", dept:cForm.ai?.department||"Municipal", status:"pending", date:dateNow(), district:cForm.district||"Delhi" }, ...prev]);
+    const newEntry = {
+      id: ref,
+      type: cForm.ai?.title || cForm.type?.split("/")[0].trim() || "General",
+      dept: cForm.ai?.department || "Municipal",
+      status: "pending",
+      date: dateNow(),
+      district: cForm.district || cForm.city || "Delhi",
+      state: cForm.state || "",
+      lat: cForm.lat || "",
+      lng: cForm.lng || "",
+      category: cForm.ai?.category || "General",
+      priority: cForm.ai?.priority || "Medium",
+      portal: cForm.ai?.portal || "pgportal.gov.in",
+      ref,
+    };
+    setComplaints(prev => [newEntry, ...prev]);
     setCForm(c => ({ ...c, submitted:true, ref }));
-    notify(`✅ Complaint ${ref} submitted successfully!`);
+    notify(`✅ Complaint ${ref} submitted to ${cForm.ai?.department||"authorities"}!`);
   };
 
-  const resetComplaint = () => setCForm({ type:null, text:"", district:"", ai:null, loading:false, submitted:false, ref:"", photo:null });
+  const resetComplaint = () => {
+    clearInterval(draftTypeTimer.current);
+    setCForm({
+      type:null, text:"", title:"", district:"", state:"", city:"", area:"", pincode:"",
+      lat:"", lng:"", ai:null, loading:false, submitted:false, ref:"", photo:null,
+      draftTyped:"", copied:false,
+    });
+    setCGpsError("");
+  };
+
+  const copyDraft = () => {
+    const txt = cForm.ai?.draft || "";
+    navigator.clipboard?.writeText(txt).then(() => {
+      setCForm(c => ({ ...c, copied:true }));
+      notify("📋 Complaint draft copied to clipboard!");
+      setTimeout(() => setCForm(c => ({ ...c, copied:false })), 3000);
+    });
+  };
+
+  const openComplaintPortal = () => {
+    const url = cForm.ai?.portal || "https://pgportal.gov.in";
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
   // ── Chat AI ───────────────────────────────────────────────────
   const sendChat = useCallback(async () => {
@@ -1639,132 +2329,520 @@ export default function SahayakApp() {
 
         {/* ════════ COMPLAINT ════════ */}
         {tab === "complaint" && (
-          <div style={{ padding:"14px 13px" }}>
-            <Card style={{ marginBottom:13, padding:"12px 15px", background:"linear-gradient(135deg,#120e00,#040018)", borderColor:"#F59E0B20" }}>
-              <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+          <div style={{padding:"14px 13px"}}>
+
+            {/* ── Header ── */}
+            <div style={{background:"linear-gradient(135deg,#130e00,#040018)",borderRadius:18,border:"1px solid rgba(245,158,11,0.15)",padding:"14px 16px",marginBottom:13}}>
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                 <div>
-                  <p style={{ fontSize:13, fontWeight:800, color:"#FDE047", margin:"0 0 3px" }}>📢 {t.grievanceTitle}</p>
-                  <p style={{ fontSize:10, color:C.muted, margin:0 }}>Describe → AI classifies → Routes → Tracks</p>
+                  <p style={{fontSize:13,fontWeight:800,color:"#FDE047",margin:"0 0 3px"}}>📢 {t.grievanceTitle}</p>
+                  <p style={{fontSize:10,color:C.muted,margin:0}}>GPS Auto-Detect · Voice · AI Draft · Smart Routing · Track</p>
                 </div>
-                <div style={{ display:"flex", gap:6 }}>
-                  {["new","history"].map(v => (
-                    <button key={v} onClick={() => setCView(v)} style={{ padding:"5px 10px", borderRadius:20, fontSize:9.5, fontWeight:800, cursor:"pointer", background: cView===v?"#F59E0B15":"rgba(255,255,255,0.04)", border:`1px solid ${cView===v?"#F59E0B45":C.border}`, color: cView===v?"#F59E0B":C.muted }}>
-                      {v==="new"?"New":`History (${complaints.length})`}
+                <div style={{display:"flex",gap:6}}>
+                  {["new","history"].map(v=>(
+                    <button key={v} onClick={()=>setCView(v)} style={{padding:"6px 12px",borderRadius:20,fontSize:9.5,fontWeight:800,cursor:"pointer",background:cView===v?"rgba(245,158,11,0.15)":"rgba(255,255,255,0.04)",border:`1px solid ${cView===v?"rgba(245,158,11,0.45)":C.border}`,color:cView===v?"#FDE047":C.muted}}>
+                      {v==="new"?"✏️ New":`📋 History (${complaints.length})`}
                     </button>
                   ))}
                 </div>
               </div>
-            </Card>
+            </div>
 
-            {cView === "history" ? (
+            {/* ══════════════════════════════════════════
+                HISTORY VIEW
+            ══════════════════════════════════════════ */}
+            {cView==="history" ? (
               <div>
-                {complaints.map((c, i) => (
-                  <Card key={c.id} style={{ marginBottom:10, padding:15, animation:`slideUp 0.4s ease ${i*0.07}s both` }}>
-                    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:12 }}>
-                      <div><p style={{ fontSize:13, fontWeight:800, margin:"0 0 2px" }}>{c.type}</p><p style={{ fontSize:9.5, color:C.muted, margin:0 }}>#{c.id} · {c.date} · {c.district}</p></div>
-                      <Badge color={pColor(c.status)}>{pLabel(c.status)}</Badge>
-                    </div>
-                    {/* Status timeline */}
-                    <div style={{ display:"flex", alignItems:"center", marginBottom:9 }}>
-                      {["Submitted","Reviewed","In Progress","Resolved"].map((st, idx) => {
-                        const sMap = { pending:1, in_progress:3, resolved:4 };
-                        const done = idx < sMap[c.status]; const active = idx === sMap[c.status]-1;
-                        return (
-                          <div key={st} style={{ display:"flex", alignItems:"center", flex:1 }}>
-                            <div style={{ display:"flex", flexDirection:"column", alignItems:"center", flex:1 }}>
-                              <div style={{ width:18, height:18, borderRadius:"50%", background: done?pColor(c.status):"rgba(255,255,255,0.07)", border:`2px solid ${done?pColor(c.status):"rgba(255,255,255,0.07)"}`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:8, marginBottom:3, animation: active?"pulse 1.5s infinite":"none", color: done?"#000":"rgba(255,255,255,0.3)" }}>
-                                {done?"✓":idx+1}
-                              </div>
-                              <p style={{ fontSize:7.5, color: done?pColor(c.status):C.muted, textAlign:"center", lineHeight:1.3, margin:0 }}>{st}</p>
-                            </div>
-                            {idx < 3 && <div style={{ height:2, flex:0.3, background: done?pColor(c.status):"rgba(255,255,255,0.07)", marginBottom:18 }}/>}
+                {complaints.length===0 ? (
+                  <div style={{textAlign:"center",padding:"48px 20px"}}>
+                    <p style={{fontSize:40,margin:"0 0 10px"}}>📭</p>
+                    <p style={{fontSize:13,fontWeight:700,color:C.mutedL,margin:"0 0 6px"}}>No complaints filed yet</p>
+                    <p style={{fontSize:11,color:C.muted,margin:"0 0 16px"}}>File your first complaint using the New tab</p>
+                    <button onClick={()=>setCView("new")} style={{padding:"10px 22px",background:`linear-gradient(135deg,${C.gold},#b45309)`,border:"none",borderRadius:12,color:"white",fontWeight:800,fontSize:12,cursor:"pointer"}}>
+                      + File New Complaint
+                    </button>
+                  </div>
+                ) : complaints.map((c,i)=>(
+                  <div key={c.id} style={{marginBottom:11,animation:`slideUp 0.4s ease ${i*0.07}s both`}}>
+                    <div style={{background:C.card,borderRadius:18,border:`1px solid ${c.priority==="High"?`${C.danger}28`:c.priority==="Medium"?`${C.gold}28`:C.border}`,overflow:"hidden"}}>
+
+                      {/* Card header */}
+                      <div style={{padding:"13px 15px 10px"}}>
+                        <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:8}}>
+                          <div style={{flex:1,minWidth:0,marginRight:8}}>
+                            <p style={{fontSize:13,fontWeight:800,margin:"0 0 3px",lineHeight:1.3}}>{c.type}</p>
+                            <p style={{fontSize:9.5,color:C.muted,margin:0,display:"flex",alignItems:"center",gap:5}}>
+                              <span>#{c.id}</span><span>·</span><span>{c.date}</span>
+                            </p>
                           </div>
-                        );
-                      })}
+                          <Badge color={pColor(c.status)}>{pLabel(c.status)}</Badge>
+                        </div>
+
+                        {/* Meta badges */}
+                        <div style={{display:"flex",gap:5,flexWrap:"wrap",marginBottom:10}}>
+                          {c.district&&<Badge color={C.cyan}>📍 {c.district}{c.state?`, ${c.state}`:""}</Badge>}
+                          {c.category&&<Badge color={C.purple}>📂 {c.category}</Badge>}
+                          {c.priority&&<Badge color={c.priority==="High"?C.danger:c.priority==="Medium"?C.gold:C.muted}>⚡ {c.priority}</Badge>}
+                        </div>
+
+                        {/* Status timeline */}
+                        <div style={{display:"flex",alignItems:"center",marginBottom:10}}>
+                          {["Submitted","Reviewed","In Progress","Resolved"].map((st,idx)=>{
+                            const sMap={pending:1,in_progress:3,resolved:4};
+                            const done=idx<(sMap[c.status]||1);
+                            const active=idx===(sMap[c.status]||1)-1;
+                            return(
+                              <div key={st} style={{display:"flex",alignItems:"center",flex:1}}>
+                                <div style={{display:"flex",flexDirection:"column",alignItems:"center",flex:1}}>
+                                  <div style={{width:20,height:20,borderRadius:"50%",background:done?pColor(c.status):"rgba(255,255,255,0.06)",border:`2px solid ${done?pColor(c.status):"rgba(255,255,255,0.06)"}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:8,marginBottom:4,animation:active?"pulse 1.5s infinite":"none",color:done?"#000":"rgba(255,255,255,0.25)"}}>
+                                    {done?"✓":idx+1}
+                                  </div>
+                                  <p style={{fontSize:7.5,color:done?pColor(c.status):C.muted,textAlign:"center",lineHeight:1.3,margin:0}}>{st}</p>
+                                </div>
+                                {idx<3&&<div style={{height:2,flex:0.3,background:done?pColor(c.status):"rgba(255,255,255,0.06)",marginBottom:18}}/>}
+                              </div>
+                            );
+                          })}
+                        </div>
+
+                        {/* Dept row */}
+                        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",paddingTop:8,borderTop:`1px solid ${C.border}`}}>
+                          <p style={{fontSize:10,color:C.muted,margin:0}}>🏛️ <strong style={{color:"white"}}>{c.dept}</strong></p>
+                          <div style={{display:"flex",gap:8,alignItems:"center"}}>
+                            {c.lat&&c.lng&&(
+                              <a href={`https://maps.google.com/?q=${c.lat},${c.lng}`} target="_blank" rel="noopener noreferrer" style={{fontSize:9.5,color:C.greenL,fontWeight:700,textDecoration:"none"}}>
+                                📍 Map
+                              </a>
+                            )}
+                            {c.portal&&(
+                              <a href={c.portal.startsWith("http")?c.portal:`https://${c.portal}`} target="_blank" rel="noopener noreferrer" style={{fontSize:9.5,color:C.cyan,fontWeight:700,textDecoration:"none"}}>
+                                🌐 Track →
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <p style={{ fontSize:10, color:C.muted, margin:0 }}>→ <strong style={{ color:"white" }}>{c.dept}</strong></p>
-                  </Card>
+                  </div>
                 ))}
               </div>
+
+            /* ══════════════════════════════════════════
+               SUCCESS STATE
+            ══════════════════════════════════════════ */
             ) : cForm.submitted ? (
-              <Card style={{ padding:30, textAlign:"center", borderColor:"#22c55e25", animation:"scaleIn 0.4s ease" }}>
-                <p style={{ fontSize:52, margin:"0 0 10px" }}>✅</p>
-                <h2 style={{ fontSize:17, fontWeight:900, color:C.greenL, margin:"0 0 8px" }}>Shikayat Registered!</h2>
-                <p style={{ color:C.muted, fontSize:11.5, lineHeight:2, margin:"0 0 18px" }}>
-                  Ref No: <strong style={{ color:"white" }}>{cForm.ref}</strong><br/>
-                  Department: <strong style={{ color:"white" }}>{cForm.ai?.department||"Municipal"}</strong><br/>
-                  Resolution: <strong style={{ color:"white" }}>{cForm.ai?.estimatedDays||7} days</strong><br/>
-                  Portal: <strong style={{ color:C.cyan }}>{cForm.ai?.portal}</strong>
-                </p>
-                <div style={{ display:"flex", gap:8 }}>
-                  <Btn onClick={() => setCView("history")} outline color={C.cyan} style={{ flex:1 }}>{t.viewHistory}</Btn>
-                  <Btn onClick={resetComplaint} outline color={C.mutedL} style={{ flex:1 }}>+ New</Btn>
+              <div style={{background:C.card,borderRadius:18,border:"1px solid rgba(34,197,94,0.22)",padding:"26px 18px",textAlign:"center",animation:"scaleIn 0.4s ease"}}>
+                {/* Confetti */}
+                <div style={{position:"relative",height:48,overflow:"hidden",marginBottom:6}}>
+                  {["#FF6B00","#22c55e","#06B6D4","#F59E0B","#8B5CF6","#EC4899","#F97316"].map((col,ci)=>(
+                    <div key={ci} style={{position:"absolute",left:`${10+ci*13}%`,top:0,width:8,height:8,borderRadius:"50%",background:col,animation:`confetti 1.2s ease ${ci*0.12}s both`}}/>
+                  ))}
                 </div>
-              </Card>
-            ) : (
-              <div>
-                <p style={{ fontSize:9.5, color:C.muted, marginBottom:7, fontWeight:700 }}>PROBLEM TYPE</p>
-                <div style={{ display:"flex", flexDirection:"column", gap:6, marginBottom:12 }}>
-                  {COMPLAINT_TYPES.map(ct => (
-                    <button key={ct.label} onClick={() => setCForm(p => ({ ...p, type:ct.label }))} style={{ background: cForm.type===ct.label?"#142a0a":C.card, border:`1px solid ${cForm.type===ct.label?"#22c55e":C.border}`, borderRadius:11, padding:"10px 12px", color: cForm.type===ct.label?"#86efac":"white", cursor:"pointer", textAlign:"left", fontSize:11.5, fontWeight: cForm.type===ct.label?800:400, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-                      <span>{ct.icon} {ct.label}</span>
-                      <Badge color={ct.priority==="High"?C.danger:ct.priority==="Medium"?C.gold:C.muted}>{ct.priority}</Badge>
-                    </button>
+                <p style={{fontSize:48,margin:"0 0 8px"}}>✅</p>
+                <h2 style={{fontSize:17,fontWeight:900,color:C.greenL,margin:"0 0 4px"}}>Shikayat Registered!</h2>
+                <p style={{fontSize:11,color:C.muted,margin:"0 0 16px"}}>Your complaint has been officially filed</p>
+
+                {/* Details */}
+                <div style={{background:"rgba(255,255,255,0.03)",borderRadius:14,padding:"13px 15px",marginBottom:14,textAlign:"left"}}>
+                  {[
+                    ["🔖","Reference No.",cForm.ref],
+                    ["🏛️","Department",cForm.ai?.department||"Municipal"],
+                    ["⚡","Priority",cForm.ai?.priority||"Medium"],
+                    ["📅","Est. Resolution",`${cForm.ai?.estimatedDays||7} working days`],
+                    ["🌐","Official Portal",cForm.ai?.portalName||cForm.ai?.portal||"pgportal.gov.in"],
+                    ...(cForm.city||cForm.district?[["📍","Location",`${[cForm.area,cForm.city||cForm.district,cForm.state].filter(Boolean).join(", ")}${cForm.pincode?` — ${cForm.pincode}`:""}`]]:[] ),
+                  ].map(([ico,lbl,val])=>(
+                    <div key={lbl} style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",padding:"7px 0",borderBottom:`1px solid ${C.border}`}}>
+                      <span style={{fontSize:10.5,color:C.muted,flexShrink:0}}>{ico} {lbl}</span>
+                      <span style={{fontSize:10.5,fontWeight:700,color:"white",maxWidth:"60%",textAlign:"right",lineHeight:1.45}}>{val}</span>
+                    </div>
                   ))}
                 </div>
 
-                <p style={{ fontSize:9.5, color:C.muted, marginBottom:6, fontWeight:700 }}>DESCRIBE YOUR PROBLEM</p>
-                <textarea value={cForm.text} onChange={e => setCForm(p => ({ ...p, text:e.target.value, ai:null }))}
-                  placeholder="Describe in any language / किसी भी भाषा में लिखें..."
-                  rows={3} style={{ width:"100%", background:C.card, border:`1px solid ${C.border2}`, borderRadius:12, padding:"11px 14px", color:"white", fontSize:12, resize:"vertical", lineHeight:1.7, boxSizing:"border-box" }}/>
-
-                <div style={{ display:"flex", gap:8, marginTop:8 }}>
-                  <input value={cForm.district} onChange={e => setCForm(p => ({ ...p, district:e.target.value }))} placeholder="📍 District / City"
-                    style={{ flex:1, background:C.card, border:`1px solid ${C.border}`, borderRadius:10, padding:"10px 12px", color:"white", fontSize:11.5 }}/>
-                  <button onClick={() => fileRef.current?.click()} style={{ padding:"10px 14px", background:"rgba(255,255,255,0.04)", border:`1px solid ${C.border}`, color:C.muted, borderRadius:10, cursor:"pointer", fontSize:20, flexShrink:0 }}>📷</button>
-                  <input ref={fileRef} type="file" accept="image/*,video/*" style={{ display:"none" }} onChange={e => { if (e.target.files[0]) { setCForm(p => ({ ...p, photo:e.target.files[0].name })); notify(`📎 Attached: ${e.target.files[0].name}`); }}}/>
+                {/* Action buttons */}
+                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:8}}>
+                  <button onClick={openComplaintPortal} style={{padding:"12px 8px",background:`${C.cyan}18`,border:`1px solid ${C.cyan}45`,borderRadius:12,color:C.cyan,fontWeight:800,fontSize:11.5,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
+                    🌐 Open Portal
+                  </button>
+                  <button onClick={()=>setCView("history")} style={{padding:"12px 8px",background:"rgba(34,197,94,0.1)",border:"1px solid rgba(34,197,94,0.3)",borderRadius:12,color:C.greenL,fontWeight:800,fontSize:11.5,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
+                    📊 Track Complaint
+                  </button>
                 </div>
-                {cForm.photo && <p style={{ marginTop:5, fontSize:10, color:C.greenL, margin:"5px 0 0" }}>📎 {cForm.photo}</p>}
+                <button onClick={resetComplaint} style={{width:"100%",padding:"11px",background:"rgba(255,255,255,0.04)",border:`1px solid ${C.border}`,borderRadius:12,color:C.muted,fontWeight:800,fontSize:11.5,cursor:"pointer"}}>
+                  + File New Complaint
+                </button>
+              </div>
 
-                <Btn onClick={() => analyzeComplaint(cForm.text||cForm.type||"General")} disabled={cForm.loading || (!cForm.text&&!cForm.type)} color={C.gold} size="lg" full style={{ marginTop:11 }}>
-                  {cForm.loading ? "🤖 " + t.analyzing : "🤖 Analyze & Route with AI →"}
-                </Btn>
+            ) : (
+            /* ══════════════════════════════════════════
+               NEW COMPLAINT FORM
+            ══════════════════════════════════════════ */
+              <div>
 
-                {cForm.loading && (
-                  <Card style={{ marginTop:11, padding:18, textAlign:"center" }}>
-                    <p style={{ fontSize:22, animation:"spin 1s linear infinite", margin:"0 0 8px" }}>⚙️</p>
-                    <p style={{ fontSize:11, color:C.muted, margin:"0 0 12px" }}>{t.analyzing}</p>
-                    <div style={{ display:"flex", flexDirection:"column", gap:6 }}>{[80,60,90,70].map((w,i) => <Skel key={i} w={`${w}%`} h={12} style={{ margin:"0 auto", animationDelay:`${i*0.15}s` }}/>)}</div>
-                  </Card>
-                )}
+                {/* ─────────────────────────────────────
+                    STEP 1 — GPS LOCATION AUTO-DETECT
+                ───────────────────────────────────── */}
+                <div style={{marginBottom:14}}>
 
-                {cForm.ai && !cForm.loading && (
-                  <Card style={{ marginTop:11, padding:16, borderColor:"#F59E0B20", animation:"slideUp 0.4s ease" }}>
-                    <p style={{ fontSize:12.5, fontWeight:900, color:"#FDE047", margin:"0 0 12px" }}>🤖 AI Analysis Complete</p>
-                    <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:8, marginBottom:12 }}>
-                      {[["📂","Category",cForm.ai.category],["🏛️","Department",cForm.ai.department],["⚡","Priority",cForm.ai.priority],["📅","Est. Days",`${cForm.ai.estimatedDays||7}d`]].map(([ico,lbl,val]) => (
-                        <div key={lbl} style={{ background:"rgba(255,255,255,0.03)", borderRadius:10, padding:"9px 11px" }}>
-                          <p style={{ fontSize:9, color:C.muted, margin:"0 0 3px" }}>{ico} {lbl}</p>
-                          <p style={{ fontSize:11, fontWeight:800, margin:0 }}>{val}</p>
-                        </div>
-                      ))}
+                  {/* Step label + GPS button */}
+                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:9}}>
+                    <div style={{display:"flex",alignItems:"center",gap:7}}>
+                      <div style={{width:22,height:22,borderRadius:"50%",background:`${C.cyan}20`,border:`2px solid ${C.cyan}40`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:900,color:C.cyan,flexShrink:0}}>1</div>
+                      <p style={{fontSize:10,color:C.mutedL,fontWeight:700,margin:0,letterSpacing:0.5}}>LOCATION AUTO-DETECT</p>
                     </div>
-                    {cForm.ai.draft && (
-                      <div style={{ padding:"10px 12px", background:"rgba(255,255,255,0.02)", borderRadius:10, borderLeft:`3px solid ${C.gold}`, marginBottom:10 }}>
-                        <p style={{ fontSize:9, color:C.muted, margin:"0 0 4px" }}>📝 AI-Generated Draft:</p>
-                        <p style={{ fontSize:10.5, color:C.mutedL, lineHeight:1.75, margin:0 }}>{cForm.ai.draft}</p>
+                    <button
+                      onClick={detectComplaintLocation}
+                      disabled={cGpsLoad}
+                      style={{display:"flex",alignItems:"center",gap:6,padding:"7px 14px",borderRadius:20,background:cGpsLoad?"rgba(255,255,255,0.04)":`${C.cyan}14`,border:`1px solid ${cGpsLoad?C.border:`${C.cyan}40`}`,color:cGpsLoad?C.muted:C.cyan,fontSize:10.5,fontWeight:800,cursor:cGpsLoad?"not-allowed":"pointer",transition:"all 0.2s"}}>
+                      {cGpsLoad
+                        ? <><span style={{animation:"spin 0.8s linear infinite",display:"inline-block",fontSize:14}}>⏳</span> Detecting...</>
+                        : <>📍 Auto-Detect GPS</>
+                      }
+                    </button>
+                  </div>
+
+                  {/* GPS permission error */}
+                  {cGpsError&&(
+                    <div style={{padding:"9px 12px",background:"rgba(239,68,68,0.07)",border:"1px solid rgba(239,68,68,0.22)",borderRadius:11,fontSize:10.5,color:"#FCA5A5",marginBottom:9,display:"flex",alignItems:"flex-start",gap:7,animation:"slideUp 0.3s ease"}}>
+                      <span style={{flexShrink:0,marginTop:1}}>⚠️</span>
+                      <div>
+                        <p style={{margin:"0 0 3px",fontWeight:700}}>{cGpsError}</p>
+                        <p style={{margin:0,fontSize:9.5,opacity:0.8}}>Enter your location manually in the fields below.</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Live location preview card */}
+                  {(cForm.lat||cForm.city)&&(
+                    <div style={{padding:"12px 14px",background:"rgba(6,182,212,0.07)",border:"1px solid rgba(6,182,212,0.2)",borderRadius:14,marginBottom:9,animation:"slideUp 0.3s ease"}}>
+                      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:9}}>
+                        <div style={{display:"flex",alignItems:"center",gap:7}}>
+                          <div style={{width:8,height:8,borderRadius:"50%",background:C.greenL,animation:"glow 2s infinite",flexShrink:0}}/>
+                          <p style={{fontSize:11,fontWeight:800,color:C.cyan,margin:0}}>Live Location Detected</p>
+                        </div>
+                        <Badge color={C.greenL} dot>GPS ON</Badge>
+                      </div>
+                      {/* Location grid */}
+                      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:7}}>
+                        {[
+                          ["City",cForm.city],
+                          ["District",cForm.district],
+                          ["State",cForm.state],
+                          ["Area",cForm.area],
+                          ["Pincode",cForm.pincode],
+                          ["Coords",cForm.lat&&cForm.lng?`${cForm.lat}, ${cForm.lng}`:""],
+                        ].filter(([,v])=>v).map(([k,v])=>(
+                          <div key={k} style={{background:"rgba(255,255,255,0.04)",borderRadius:9,padding:"7px 9px"}}>
+                            <p style={{fontSize:8,color:C.muted,margin:"0 0 2px",textTransform:"uppercase",letterSpacing:0.5}}>{k}</p>
+                            <p style={{fontSize:10,color:"white",fontWeight:600,margin:0,lineHeight:1.3,wordBreak:"break-all"}}>{v}</p>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Map link if coords available */}
+                      {cForm.lat&&cForm.lng&&(
+                        <div style={{marginTop:9,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                          <a href={`https://maps.google.com/?q=${cForm.lat},${cForm.lng}`} target="_blank" rel="noopener noreferrer" style={{fontSize:10,color:C.cyan,fontWeight:700,textDecoration:"none",display:"flex",alignItems:"center",gap:4}}>
+                            🗺️ View on Google Maps →
+                          </a>
+                          <button onClick={()=>setCForm(p=>({...p,city:"",lat:"",lng:"",district:"",state:"",area:"",pincode:""}))} style={{background:"none",border:"none",color:C.muted,fontSize:10,cursor:"pointer",textDecoration:"underline",padding:0}}>
+                            ✏️ Edit
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Manual input — always shown if city not auto-detected */}
+                  {!cForm.city&&(
+                    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:7}}>
+                      <input value={cForm.district} onChange={e=>setCForm(p=>({...p,district:e.target.value}))} placeholder="District"
+                        style={{background:C.card,border:`1px solid ${C.border}`,borderRadius:11,padding:"10px 13px",color:"white",fontSize:12,boxSizing:"border-box"}}/>
+                      <input value={cForm.state} onChange={e=>setCForm(p=>({...p,state:e.target.value}))} placeholder="State"
+                        style={{background:C.card,border:`1px solid ${C.border}`,borderRadius:11,padding:"10px 13px",color:"white",fontSize:12,boxSizing:"border-box"}}/>
+                    </div>
+                  )}
+
+                  {/* Fine-tune area + pincode after GPS */}
+                  {cForm.city&&(
+                    <div style={{display:"grid",gridTemplateColumns:"2fr 1fr",gap:7,marginTop:7}}>
+                      <input value={cForm.area} onChange={e=>setCForm(p=>({...p,area:e.target.value}))} placeholder="Area / Street (optional)"
+                        style={{background:C.card,border:`1px solid ${C.border}`,borderRadius:11,padding:"10px 13px",color:"white",fontSize:11.5,boxSizing:"border-box"}}/>
+                      <input value={cForm.pincode} onChange={e=>setCForm(p=>({...p,pincode:e.target.value}))} placeholder="Pincode"
+                        style={{background:C.card,border:`1px solid ${C.border}`,borderRadius:11,padding:"10px 13px",color:"white",fontSize:11.5,boxSizing:"border-box"}}/>
+                    </div>
+                  )}
+                </div>
+
+                {/* Separator */}
+                <div style={{height:1,background:C.border,margin:"2px 0 14px"}}/>
+
+                {/* ─────────────────────────────────────
+                    STEP 2 — PROBLEM TYPE
+                ───────────────────────────────────── */}
+                <div style={{marginBottom:13}}>
+                  <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:9}}>
+                    <div style={{width:22,height:22,borderRadius:"50%",background:"rgba(139,92,246,0.18)",border:"2px solid rgba(139,92,246,0.4)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:900,color:C.purple,flexShrink:0}}>2</div>
+                    <p style={{fontSize:10,color:C.mutedL,fontWeight:700,margin:0,letterSpacing:0.5}}>PROBLEM TYPE</p>
+                  </div>
+                  <div style={{display:"flex",flexDirection:"column",gap:6}}>
+                    {COMPLAINT_TYPES.map(ct=>(
+                      <button key={ct.label}
+                        onClick={()=>setCForm(p=>({...p,type:ct.label,ai:null,draftTyped:""}))}
+                        style={{
+                          background:cForm.type===ct.label?"#0f2208":C.card,
+                          border:`1px solid ${cForm.type===ct.label?"#22c55e":C.border}`,
+                          borderRadius:12,padding:"11px 13px",
+                          color:cForm.type===ct.label?"#86efac":"white",
+                          cursor:"pointer",textAlign:"left",fontSize:12,
+                          fontWeight:cForm.type===ct.label?800:400,
+                          display:"flex",justifyContent:"space-between",alignItems:"center",
+                          transition:"all 0.2s",
+                        }}>
+                        <span style={{display:"flex",alignItems:"center",gap:8}}>
+                          {cForm.type===ct.label&&<span style={{fontSize:13}}>✓</span>}
+                          {ct.icon} {ct.label}
+                        </span>
+                        <Badge color={ct.priority==="High"?C.danger:ct.priority==="Medium"?C.gold:C.muted}>{ct.priority}</Badge>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div style={{height:1,background:C.border,margin:"2px 0 14px"}}/>
+
+                {/* ─────────────────────────────────────
+                    STEP 3 — DESCRIBE + VOICE
+                ───────────────────────────────────── */}
+                <div style={{marginBottom:12}}>
+                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:9}}>
+                    <div style={{display:"flex",alignItems:"center",gap:7}}>
+                      <div style={{width:22,height:22,borderRadius:"50%",background:"rgba(245,158,11,0.18)",border:"2px solid rgba(245,158,11,0.4)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:900,color:C.gold,flexShrink:0}}>3</div>
+                      <p style={{fontSize:10,color:C.mutedL,fontWeight:700,margin:0,letterSpacing:0.5}}>DESCRIBE — TYPE OR SPEAK</p>
+                    </div>
+                    <button
+                      onClick={cVoiceOn?stopComplaintVoice:startComplaintVoice}
+                      style={{display:"flex",alignItems:"center",gap:5,padding:"6px 13px",borderRadius:20,background:cVoiceOn?"rgba(239,68,68,0.16)":"rgba(255,255,255,0.05)",border:`1px solid ${cVoiceOn?"rgba(239,68,68,0.5)":C.border}`,color:cVoiceOn?C.danger:C.muted,fontSize:10,fontWeight:800,cursor:"pointer",animation:cVoiceOn?"pulse 1.5s infinite":"none"}}>
+                      🎙️ {cVoiceOn?"Stop":"Voice"}
+                    </button>
+                  </div>
+
+                  <div style={{position:"relative"}}>
+                    <textarea
+                      value={cForm.text}
+                      onChange={e=>setCForm(p=>({...p,text:e.target.value,ai:null,draftTyped:""}))}
+                      placeholder={cVoiceOn?"🎙️ Listening... speak in any language...":"e.g. 'Road toot gayi hai' or 'Water supply nahi aa raha 3 din se' — Any language"}
+                      rows={3}
+                      style={{width:"100%",background:C.card,border:`1px solid ${cVoiceOn?"rgba(239,68,68,0.45)":C.border2}`,borderRadius:13,padding:"12px 14px",color:"white",fontSize:12,resize:"vertical",lineHeight:1.75,boxSizing:"border-box",transition:"border-color 0.25s"}}
+                    />
+                    {cVoiceOn&&(
+                      <div style={{position:"absolute",bottom:10,right:12,display:"flex",gap:2,alignItems:"center"}}>
+                        {[1,2,3,4,5,6].map(i=><div key={i} style={{width:3,borderRadius:2,background:C.danger,height:`${5+Math.abs(Math.sin(i*0.78)*13)}px`,animation:`wave ${0.55+i*0.09}s ease-in-out infinite alternate`}}/>)}
                       </div>
                     )}
-                    <p style={{ fontSize:10, color:C.cyan, margin:"0 0 10px" }}>🌐 Submit at: <strong>{cForm.ai.portal}</strong></p>
-                    {cForm.ai.tip && <p style={{ padding:"9px 11px", background:"rgba(245,158,11,0.06)", borderRadius:9, fontSize:10, color:"#FDE047", margin:"0 0 12px" }}>💡 {cForm.ai.tip}</p>}
-                    <Btn onClick={submitComplaint} color={C.green} size="lg" full>✅ {t.submitComplaint} →</Btn>
-                  </Card>
+                  </div>
+                  {cForm.text&&<p style={{fontSize:9.5,color:C.muted,margin:"4px 0 0",textAlign:"right"}}>{cForm.text.length} characters</p>}
+                </div>
+
+                {/* Photo Attach */}
+                <div style={{display:"flex",gap:8,marginBottom:14,alignItems:"center"}}>
+                  <button onClick={()=>fileRef.current?.click()} style={{display:"flex",alignItems:"center",gap:6,padding:"9px 15px",background:"rgba(255,255,255,0.04)",border:`1px solid ${cForm.photo?`${C.greenL}40`:C.border}`,color:cForm.photo?C.greenL:C.muted,borderRadius:11,cursor:"pointer",fontSize:11.5,fontWeight:700}}>
+                    📷 {cForm.photo?"Photo Attached ✓":"Attach Evidence"}
+                  </button>
+                  {cForm.photo&&(
+                    <button onClick={()=>setCForm(p=>({...p,photo:null}))} style={{padding:"9px 11px",background:"rgba(239,68,68,0.07)",border:"1px solid rgba(239,68,68,0.22)",color:C.danger,borderRadius:11,cursor:"pointer",fontSize:13,fontWeight:800}}>✕</button>
+                  )}
+                  <input ref={fileRef} type="file" accept="image/*,video/*" style={{display:"none"}} onChange={e=>{if(e.target.files[0]){setCForm(p=>({...p,photo:e.target.files[0].name}));notify(`📎 ${e.target.files[0].name} attached`,"success");}}}/>
+                </div>
+
+                {/* ─────────────────────────────────────
+                    GENERATE BUTTON
+                ───────────────────────────────────── */}
+                <button
+                  onClick={()=>analyzeComplaint(cForm.text||cForm.type||"General civic complaint")}
+                  disabled={cForm.loading||(!cForm.text&&!cForm.type)}
+                  style={{
+                    width:"100%",padding:"15px 18px",border:"none",borderRadius:14,
+                    cursor:(cForm.loading||(!cForm.text&&!cForm.type))?"not-allowed":"pointer",
+                    background:(cForm.loading||(!cForm.text&&!cForm.type))
+                      ?"rgba(255,255,255,0.05)"
+                      :`linear-gradient(135deg,#d97706,#92400e)`,
+                    color:"white",fontWeight:900,fontSize:14,
+                    boxShadow:(cForm.loading||(!cForm.text&&!cForm.type))?"none":"0 5px 24px rgba(217,119,6,0.38)",
+                    opacity:(!cForm.text&&!cForm.type)&&!cForm.loading?0.4:1,
+                    display:"flex",alignItems:"center",justifyContent:"center",gap:9,
+                    transition:"all 0.25s",marginBottom:10,
+                  }}>
+                  {cForm.loading
+                    ? <><span style={{fontSize:18,animation:"spin 0.7s linear infinite",display:"inline-block"}}>⚙️</span> AI Generating Complaint...</>
+                    : <>🤖 Generate Complaint with AI</>
+                  }
+                </button>
+
+                {/* ─────────────────────────────────────
+                    AI LOADING PROGRESS
+                ───────────────────────────────────── */}
+                {cForm.loading&&(
+                  <div style={{background:C.card,borderRadius:16,border:`1px solid ${C.border}`,padding:"16px 15px",marginTop:10,animation:"slideUp 0.3s ease"}}>
+                    <div style={{display:"flex",gap:10,alignItems:"center",marginBottom:14}}>
+                      <span style={{fontSize:22,animation:"spin 1s linear infinite",display:"inline-block",flexShrink:0}}>⚙️</span>
+                      <div>
+                        <p style={{fontSize:12,fontWeight:800,margin:"0 0 2px"}}>AI Analyzing Your Complaint...</p>
+                        <p style={{fontSize:10,color:C.muted,margin:0}}>Claude AI · Detecting · Routing · Drafting</p>
+                      </div>
+                    </div>
+                    {[
+                      {label:"Detecting complaint category",w:"72%",done:true},
+                      {label:"Identifying responsible department",w:"58%",done:true},
+                      {label:"Generating formal draft letter",w:"84%",done:false},
+                      {label:"Routing to official govt portal",w:"45%",done:false},
+                    ].map((item,i)=>(
+                      <div key={i} style={{marginBottom:10}}>
+                        <div style={{display:"flex",justifyContent:"space-between",marginBottom:4}}>
+                          <p style={{fontSize:9.5,color:C.muted,margin:0}}>{item.label}</p>
+                          {item.done
+                            ? <span style={{fontSize:9,color:C.greenL,fontWeight:700}}>✓ Done</span>
+                            : <span style={{fontSize:9,color:C.gold,animation:"pulse 1.2s infinite"}}>● Processing</span>
+                          }
+                        </div>
+                        <div style={{height:4,background:"rgba(255,255,255,0.05)",borderRadius:4,overflow:"hidden"}}>
+                          <div className="skeleton" style={{height:"100%",width:item.w,borderRadius:4,animationDelay:`${i*0.18}s`}}/>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 )}
+
+                {/* ─────────────────────────────────────
+                    AI RESULT CARD
+                ───────────────────────────────────── */}
+                {cForm.ai&&!cForm.loading&&(
+                  <div style={{background:C.card,borderRadius:18,border:"1px solid rgba(245,158,11,0.2)",marginTop:12,overflow:"hidden",animation:"slideUp 0.4s ease"}}>
+
+                    {/* Result header */}
+                    <div style={{padding:"14px 16px 11px",background:"linear-gradient(135deg,rgba(245,158,11,0.09),rgba(245,158,11,0.03)",borderBottom:`1px solid ${C.border}`}}>
+                      <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:6}}>
+                        <p style={{fontSize:12.5,fontWeight:900,color:"#FDE047",margin:0}}>✅ AI Complaint Generated</p>
+                        <Badge color={cForm.ai.priority==="High"?C.danger:cForm.ai.priority==="Medium"?C.gold:C.muted}>
+                          ⚡ {cForm.ai.priority} Priority
+                        </Badge>
+                      </div>
+                      {cForm.ai.title&&(
+                        <p style={{fontSize:13.5,fontWeight:800,color:"white",margin:0,lineHeight:1.3}}>{cForm.ai.title}</p>
+                      )}
+                    </div>
+
+                    <div style={{padding:"13px 15px"}}>
+
+                      {/* Analysis grid */}
+                      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:12}}>
+                        {[
+                          ["📂","Category",cForm.ai.category],
+                          ["🏛️","Department",cForm.ai.department],
+                          ["📅","Est. Days",`${cForm.ai.estimatedDays||7} days`],
+                          ["🌐","Portal",cForm.ai.portalName||cForm.ai.portal],
+                        ].map(([ico,lbl,val])=>(
+                          <div key={lbl} style={{background:"rgba(255,255,255,0.03)",borderRadius:11,padding:"10px 12px"}}>
+                            <p style={{fontSize:9,color:C.muted,margin:"0 0 3px"}}>{ico} {lbl}</p>
+                            <p style={{fontSize:10.5,fontWeight:800,margin:0,lineHeight:1.3,wordBreak:"break-all"}}>{val}</p>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Smart routing indicator */}
+                      <div style={{display:"flex",alignItems:"center",gap:8,padding:"9px 12px",background:"rgba(139,92,246,0.08)",borderRadius:11,border:"1px solid rgba(139,92,246,0.2)",marginBottom:12}}>
+                        <span style={{fontSize:18,flexShrink:0}}>🔀</span>
+                        <div>
+                          <p style={{fontSize:10.5,fontWeight:800,color:C.purple,margin:"0 0 1px"}}>Smart Portal Routing Active</p>
+                          <p style={{fontSize:9.5,color:C.muted,margin:0}}>
+                            Routed → <strong style={{color:"white"}}>{cForm.ai.portalName||cForm.ai.portal}</strong>
+                          </p>
+                        </div>
+                        <a href={cForm.ai.portal?.startsWith("http")?cForm.ai.portal:`https://${cForm.ai.portal}`}
+                          target="_blank" rel="noopener noreferrer"
+                          style={{marginLeft:"auto",fontSize:9.5,color:C.cyan,fontWeight:800,textDecoration:"none",flexShrink:0}}>
+                          Open →
+                        </a>
+                      </div>
+
+                      {/* Location context */}
+                      {(cForm.district||cForm.city)&&(
+                        <div style={{display:"flex",alignItems:"flex-start",gap:8,padding:"9px 12px",background:"rgba(6,182,212,0.07)",borderRadius:11,border:"1px solid rgba(6,182,212,0.2)",marginBottom:12}}>
+                          <span style={{fontSize:18,flexShrink:0}}>📍</span>
+                          <div style={{flex:1}}>
+                            <p style={{fontSize:10.5,color:C.cyan,margin:"0 0 2px",fontWeight:700}}>
+                              {[cForm.area,cForm.city||cForm.district,cForm.state].filter(Boolean).join(", ")}
+                              {cForm.pincode?` — ${cForm.pincode}`:""}
+                            </p>
+                            {cForm.lat&&cForm.lng&&(
+                              <a href={`https://maps.google.com/?q=${cForm.lat},${cForm.lng}`} target="_blank" rel="noopener noreferrer" style={{fontSize:9,color:C.cyan,fontWeight:700,textDecoration:"none",opacity:0.75}}>
+                                🗺️ {cForm.lat}, {cForm.lng} — View on Maps
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Typing-animated draft */}
+                      {(cForm.draftTyped||cForm.ai.draft)&&(
+                        <div style={{padding:"13px 14px",background:"rgba(255,255,255,0.025)",borderRadius:13,borderLeft:`3px solid ${C.gold}`,marginBottom:12}}>
+                          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:9}}>
+                            <p style={{fontSize:10,color:C.gold,fontWeight:700,margin:0}}>📝 AI-Generated Formal Complaint Draft</p>
+                            {cForm.draftTyped.length<(cForm.ai.draft||"").length&&(
+                              <span style={{display:"inline-flex",gap:3}}>
+                                {[1,2,3].map(i=><span key={i} style={{width:5,height:5,borderRadius:"50%",background:C.gold,animation:`pulse 0.8s ease-in-out ${i*0.2}s infinite`,display:"inline-block"}}/>)}
+                              </span>
+                            )}
+                          </div>
+                          <p style={{fontSize:10.5,color:C.mutedL,lineHeight:1.85,margin:0,whiteSpace:"pre-wrap",fontFamily:"'Courier New',monospace"}}>
+                            {cForm.draftTyped||cForm.ai.draft}
+                            {cForm.draftTyped.length<(cForm.ai.draft||"").length&&(
+                              <span style={{display:"inline-block",width:2,height:14,background:C.gold,marginLeft:2,animation:"pulse 0.5s infinite",verticalAlign:"text-bottom"}}/>
+                            )}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* AI tip */}
+                      {cForm.ai.tip&&(
+                        <div style={{padding:"9px 12px",background:"rgba(245,158,11,0.06)",borderRadius:11,display:"flex",gap:7,alignItems:"flex-start",marginBottom:14}}>
+                          <span style={{flexShrink:0,fontSize:15}}>💡</span>
+                          <p style={{fontSize:10.5,color:"#FDE047",margin:0,lineHeight:1.65}}>{cForm.ai.tip}</p>
+                        </div>
+                      )}
+
+                      {/* ── PRIMARY ACTIONS ── */}
+                      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:8}}>
+                        <button onClick={submitComplaint} style={{padding:"13px 10px",background:`linear-gradient(135deg,${C.green},#065f24)`,border:"none",borderRadius:13,color:"white",fontWeight:900,fontSize:12,cursor:"pointer",boxShadow:"0 4px 18px rgba(19,136,8,0.38)",display:"flex",alignItems:"center",justifyContent:"center",gap:6}}>
+                          ✅ Submit Complaint
+                        </button>
+                        <button onClick={openComplaintPortal} style={{padding:"13px 10px",background:`${C.cyan}14`,border:`1px solid ${C.cyan}40`,borderRadius:13,color:C.cyan,fontWeight:800,fontSize:12,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:6}}>
+                          🌐 Open Portal
+                        </button>
+                      </div>
+
+                      {/* ── SECONDARY ACTIONS ── */}
+                      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
+                        <button onClick={copyDraft} style={{padding:"11px 10px",background:cForm.copied?"rgba(34,197,94,0.13)":"rgba(255,255,255,0.05)",border:`1px solid ${cForm.copied?"rgba(34,197,94,0.38)":C.border}`,borderRadius:12,color:cForm.copied?C.greenL:C.mutedL,fontWeight:800,fontSize:11,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:6,transition:"all 0.3s"}}>
+                          {cForm.copied?"✅ Copied!":"📋 Copy Draft"}
+                        </button>
+                        <button onClick={()=>{submitComplaint();setTimeout(()=>setCView("history"),600);}} style={{padding:"11px 10px",background:"rgba(139,92,246,0.1)",border:"1px solid rgba(139,92,246,0.28)",borderRadius:12,color:C.purple,fontWeight:800,fontSize:11,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:6}}>
+                          📊 Submit & Track
+                        </button>
+                      </div>
+
+                      {/* Portal footer note */}
+                      <div style={{marginTop:10,padding:"8px 12px",background:"rgba(255,255,255,0.02)",borderRadius:10,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                        <p style={{fontSize:9.5,color:C.muted,margin:0}}>🌐 {cForm.ai.portal}</p>
+                        <p style={{fontSize:9.5,color:C.muted,margin:0}}>Ref # generated on submission</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
               </div>
             )}
           </div>
         )}
-
         {/* ════════ DIGILOCKER ════════ */}
         {tab === "digilocker" && (
           <div style={{ padding:"14px 13px" }}>
