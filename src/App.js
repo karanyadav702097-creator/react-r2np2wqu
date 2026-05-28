@@ -1,6 +1,7 @@
 import React, {
   useState, useEffect, useRef, useCallback, useMemo, memo, lazy, Suspense
 } from "react";
+import { auth, db } from "./firebase";
 
 // ═══════════════════════════════════════════════════════════════════
 //  SAHAYAK v4.0  —  National AI Citizen Super App
