@@ -11,7 +11,7 @@ import { auth, db } from "./firebase";
 
 // ── ENVIRONMENT (replace with real keys in .env) ──────────────────
 const ENV = {
-  FIREBASE_API_KEY: "demo-mode",
+  FIREBASE_API_KEY: "AIzaSyAxkg1IddtXL8qCMzqjEV8BLHs6Yfxin3Y",
   CLAUDE_API_URL: "https://api.anthropic.com/v1/messages",
   CLAUDE_MODEL: "claude-sonnet-4-20250514",
 };
